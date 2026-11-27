@@ -3,69 +3,591 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f7f5">
-  <title>Bridge Team Workspace</title>
+  <meta name="theme-color" content="#050505">
+  <title>Bridge Kids Shared Workspace</title>
   <style>
-    :root{--ink:#20312d;--muted:#77827e;--line:#e7ebe8;--paper:#fff;--wash:#f6f7f5;--green:#254b40;--mint:#e8f0ec;--coral:#c87d68;--blue:#7299a3;--olive:#789278;--shadow:0 8px 28px #20312d0a}
-    *{box-sizing:border-box}body{margin:0;background:var(--wash);font:14px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}button{font:inherit;color:inherit;cursor:pointer}.shell{max-width:1440px;min-height:100vh;margin:auto;display:grid;grid-template-columns:250px minmax(0,1fr);background:#f7f8f6}.sidebar{background:#fff;border-right:1px solid var(--line);padding:22px 14px 18px;display:flex;flex-direction:column;gap:25px;min-height:100vh}.brand{display:flex;align-items:center;gap:11px;padding:0 8px}.brand-mark{display:grid;place-items:center;width:34px;height:34px;border-radius:12px;background:var(--green);color:#fff;font-size:16px;font-weight:700}.brand strong{display:block;font-size:13px}.brand small,.fine{color:var(--muted);font-size:11px}.section-label{font-size:10px;letter-spacing:.13em;color:#89938f;margin:0 8px 8px}.nav-group{display:grid;gap:3px}.nav-link,.space-link{border:0;background:transparent;text-align:left;text-decoration:none;color:#53605b;border-radius:10px;display:flex;align-items:center;gap:10px;padding:10px 11px}.nav-link:hover,.space-link:hover{background:#f3f6f4}.nav-link.active{background:var(--mint);color:var(--green);font-weight:650}.icon{font-size:16px;width:17px;text-align:center}.space-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}.add-small{border:0;background:none;color:#82908a;font-size:18px}.space-link{font-size:12px;padding:7px 9px}.space-link.indent{margin-left:12px}.space-dot{width:7px;height:7px;border-radius:50%;background:var(--coral);flex:none}.space-dot.blue{background:var(--blue)}.space-dot.green{background:var(--olive)}.help{margin-top:auto;padding:12px;border:1px solid var(--line);border-radius:12px;background:#fbfcfb;display:flex;gap:9px;font-size:12px}.user{display:flex;align-items:center;gap:9px;padding:0 8px}.avatar{width:29px;height:29px;border-radius:50%;background:var(--mint);display:grid;place-items:center;font-size:11px;font-weight:650}.user b{font-size:12px}.main{min-width:0}.topbar{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 34px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:4}.crumb{font-size:12px;color:#77827e}.crumb b{color:var(--ink);font-weight:600}.top-actions{display:flex;align-items:center;gap:17px}.sync{font-size:11px;color:#63736c;display:flex;gap:6px;align-items:center}.sync i{width:7px;height:7px;border-radius:50%;background:#71a582}.round-btn{border:1px solid var(--line);background:#fff;border-radius:10px;width:35px;height:35px}.content{padding:30px 34px 40px;max-width:1140px;margin:auto}.eyebrow{font-size:10px;letter-spacing:.15em;color:#77847e;font-weight:650}.heading-row{display:flex;justify-content:space-between;align-items:center;gap:14px}.heading-row h1{font-size:27px;letter-spacing:-.04em;margin:6px 0 2px}.subtitle{font-size:12px;color:var(--muted);margin:0}.primary{border:0;border-radius:9px;background:var(--green);color:#fff;padding:11px 16px;font-size:12px;font-weight:600}.filters{display:flex;gap:8px;margin:23px 0 19px;flex-wrap:wrap}.pill{background:#fff;border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:11px;color:#53615b}.pill.active{background:var(--green);border-color:var(--green);color:#fff}.pill .space-dot{display:inline-block;vertical-align:middle;margin-right:6px}.teams{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.team-card,.panel{background:#fff;border:1px solid var(--line);border-radius:15px;box-shadow:var(--shadow)}.team-card{padding:16px 17px 14px;min-height:138px}.card-top{display:flex;justify-content:space-between;align-items:center}.team-avatar{width:28px;height:28px;border-radius:9px;display:grid;place-items:center;font-size:9px;font-weight:700;background:#f7ece8;color:#9c5b49}.team-avatar.blue{background:#e9f0f2;color:#527b85}.team-avatar.green{background:#edf3ed;color:#59775d}.count{font-size:10px;color:#89928e}.team-card h3{font-size:12px;margin:12px 0 2px}.team-card p{font-size:10px;color:#89928e;margin:0}.team-foot{display:flex;justify-content:space-between;margin-top:17px;color:#68746f;font-size:10px}.text-btn{border:0;background:transparent;color:var(--green);font-weight:650;font-size:10px}.lower{display:grid;grid-template-columns:1.25fr .9fr;gap:13px;margin-top:13px}.panel{padding:17px 18px}.panel-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}.panel h2{font-size:13px;margin:0 0 2px}.panel .muted{color:var(--muted);font-size:10px}.empty{min-height:129px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px}.empty-icon{width:33px;height:33px;background:#edf3ef;border-radius:11px;display:grid;place-items:center;font-size:15px;margin-bottom:9px}.empty strong{font-size:11px}.empty p{font-size:10px;color:#8b9590;margin:3px 0 7px;max-width:270px}.empty a{color:var(--green);text-decoration:none;font-size:10px;font-weight:650}.view{display:none}.view.active{display:block}.team-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.section-title{margin:0 0 14px}.section-title h1{font-size:25px;letter-spacing:-.04em;margin:5px 0}.simple-card{padding:17px}.tag{font-size:10px;color:var(--green);background:var(--mint);border-radius:20px;padding:5px 8px}.task-row,.file-row{display:flex;align-items:center;gap:11px;padding:13px 0;border-bottom:1px solid var(--line)}.task-row:last-child,.file-row:last-child{border-bottom:0}.check{width:17px;height:17px;border:1px solid #b7c3bd;border-radius:5px}.avatar-sm{width:30px;height:30px;display:grid;place-items:center;background:#edf3ef;border-radius:9px}.inbox-layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:14px}.inbox-nav{padding:14px}.inbox-label{font-size:10px;letter-spacing:.12em;color:#89938f;padding:0 7px 8px}.inbox-item{width:100%;border:0;background:none;text-align:left;border-radius:10px;padding:10px 9px;display:flex;align-items:center;gap:9px;font-size:12px}.inbox-item:hover{background:#f5f7f6}.inbox-item.active{background:var(--mint);color:var(--green)}.inbox-item small{display:block;font-size:10px;color:var(--muted);margin-top:1px}.mail-dot{width:8px;height:8px;border-radius:50%;background:var(--coral);flex:none}.mail-dot.blue{background:var(--blue)}.mail-dot.green{background:var(--olive)}.mail-dot.gray{background:#9aa49f}.compose{width:100%;margin-top:13px;background:#f3f7f4;color:var(--green);border:0;border-radius:9px;padding:10px;font-weight:600;font-size:11px}.email-heading{display:flex;justify-content:space-between;gap:14px;align-items:center;padding-bottom:13px;border-bottom:1px solid var(--line)}.email-heading h2{font-size:16px;margin:0 0 3px}.mailbox{font-size:10px;color:var(--muted)}.email-empty{min-height:240px}.setup{display:flex;gap:10px;align-items:flex-start;color:#65716c;background:#f2f6f3;border:1px solid #e8eeea;border-radius:12px;padding:12px 14px;margin-top:13px;font-size:11px}.mobile-menu{display:none}
-    @media(max-width:860px){.shell{grid-template-columns:205px minmax(0,1fr)}.sidebar{padding-left:10px;padding-right:10px}.content{padding:25px 22px}.topbar{padding:0 22px}}
-    @media(max-width:640px){.shell{display:block}.sidebar{display:none;position:fixed;z-index:8;inset:0 auto 0 0;width:260px;box-shadow:12px 0 30px #0002}.sidebar.open{display:flex}.mobile-menu{display:inline-block}.topbar{height:58px;padding:0 15px}.top-actions{gap:9px}.sync{display:none}.content{padding:22px 15px 32px}.heading-row{align-items:flex-start}.heading-row h1{font-size:23px}.heading-row .primary{padding:9px 10px;font-size:11px}.teams,.team-list{grid-template-columns:1fr}.team-card{min-height:126px}.lower{grid-template-columns:1fr}.inbox-layout{grid-template-columns:1fr}.inbox-nav{padding:12px}.inbox-nav-list{display:grid;grid-template-columns:1fr 1fr}.compose{margin-top:7px}.email-empty{min-height:190px}.section-title h1{font-size:23px}}
+    :root {
+      color-scheme: dark;
+      --black: #050505;
+      --white: #f8f8f8;
+      --muted: #b8b8b8;
+      --line: #525252;
+      --soft-line: #303030;
+      --panel: #101010;
+      --circle-size: clamp(190px, 20vw, 270px);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { min-width: 320px; background: var(--black); }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: var(--black);
+      color: var(--white);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    button { font: inherit; }
+
+    .page {
+      width: min(100% - 48px, 1440px);
+      margin-inline: auto;
+      padding: 30px 0 22px;
+    }
+
+    .top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 32px;
+      height: 32px;
+      place-items: center;
+      border: 1px solid var(--white);
+      border-radius: 50%;
+      color: var(--white);
+      font-size: 10px;
+      letter-spacing: -.04em;
+    }
+
+    h1 {
+      margin: 18px 0 5px;
+      font-size: clamp(30px, 4vw, 48px);
+      font-weight: 850;
+      letter-spacing: -.055em;
+      line-height: 1.02;
+    }
+
+    .intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .stage {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(236px, 290px) minmax(0, 1fr);
+      align-items: center;
+      gap: clamp(24px, 4vw, 70px);
+      width: min(100%, 1220px);
+      min-height: 0;
+      margin: 32px auto;
+    }
+
+    .circle-column {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      justify-items: center;
+      align-items: center;
+      gap: clamp(20px, 4vh, 42px);
+    }
+
+    .space-circle {
+      display: flex;
+      width: var(--circle-size);
+      aspect-ratio: 1;
+      padding: 24px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 13px;
+      border: 1px solid #d5d5d5;
+      border-radius: 50%;
+      background: transparent;
+      color: var(--white);
+      text-align: center;
+      cursor: pointer;
+      transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .space-circle:hover { transform: scale(1.025); border-color: #fff; }
+
+    .space-circle:focus-visible,
+    .shared-link:focus-visible {
+      outline: 3px solid #fff;
+      outline-offset: 5px;
+    }
+
+    .space-circle.is-current {
+      border: 5px double var(--black);
+      background: var(--white);
+      color: var(--black);
+      box-shadow: 0 0 0 1px var(--white);
+    }
+
+    .space-circle.is-admin-active {
+      border: 5px double var(--white);
+      background: #171717;
+      color: var(--white);
+    }
+
+    .circle-mark {
+      display: grid;
+      width: 44px;
+      height: 44px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid currentColor;
+      border-radius: 50%;
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .02em;
+    }
+
+    .circle-mark svg { width: 21px; height: 21px; }
+
+    .circle-name {
+      max-width: 205px;
+      font-size: clamp(17px, 1.5vw, 22px);
+      font-weight: 800;
+      letter-spacing: -.035em;
+      line-height: 1.12;
+    }
+
+    .mobile-notices { display: none; }
+
+    .spine {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+    }
+
+    .spine-title {
+      position: relative;
+      align-self: center;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+
+    .shared-list {
+      position: relative;
+      display: grid;
+      gap: 8px;
+      --node-size: 54px;
+      --row-height: 68px;
+    }
+
+    .shared-list::before {
+      position: absolute;
+      inset-block: calc(var(--row-height) / 2);
+      inset-inline-start: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: #777;
+      content: "";
+      pointer-events: none;
+    }
+
+    .shared-link {
+      position: relative;
+      display: grid;
+      min-height: var(--row-height);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      align-items: center;
+      padding: 0;
+      border: 0;
+      border-radius: 12px;
+      background: transparent;
+      color: var(--white);
+      text-align: left;
+      cursor: pointer;
+    }
+
+    .shared-link:hover .shared-icon { border-color: #fff; }
+
+    .shared-link.is-active .shared-name {
+      text-decoration: underline;
+      text-underline-offset: .22em;
+    }
+
+    .shared-icon {
+      display: grid;
+      grid-column: 1;
+      grid-row: 1;
+      justify-self: end;
+      width: var(--node-size);
+      height: var(--node-size);
+      transform: translateX(50%);
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      background: var(--white);
+      color: var(--black);
+      transition: border-color .18s ease;
+    }
+
+    .shared-icon svg { width: 22px; height: 22px; }
+
+    .shared-name {
+      grid-column: 2;
+      grid-row: 1;
+      margin-inline-start: calc(var(--node-size) / 2 + 10px);
+      font-size: 16px;
+      font-weight: 750;
+      letter-spacing: -.02em;
+    }
+
+    .selection {
+      display: flex;
+      width: min(100%, 710px);
+      min-height: 70px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 0 auto;
+      padding: 14px 20px;
+      border: 1px solid var(--soft-line);
+      border-radius: 999px;
+      background: var(--panel);
+      text-align: center;
+    }
+
+    .selection-dot {
+      width: 8px;
+      height: 8px;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: var(--white);
+    }
+
+    .selection-copy { display: grid; gap: 2px; }
+
+    .selection-title {
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .selection-description {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .demo-note {
+      margin: 13px 0 0;
+      color: #888;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    @media (max-width: 850px) {
+      :root { --circle-size: clamp(150px, 24vw, 210px); }
+      .page { width: min(100% - 32px, 680px); padding-top: 24px; }
+      .stage {
+        grid-template-columns: minmax(0, 1fr) minmax(190px, 230px) minmax(0, 1fr);
+        gap: 15px;
+      }
+      .circle-column { gap: 20px; }
+      .space-circle { padding: 15px; }
+      .circle-name { font-size: 17px; }
+      .shared-list { --node-size: 46px; }
+      .shared-name { font-size: 13px; }
+    }
+
+    @media (max-width: 620px) {
+      :root { --circle-size: clamp(132px, 40vw, 178px); }
+      .page { width: min(100% - 28px, 460px); padding-top: 20px; }
+      h1 { margin-top: 15px; font-size: 34px; }
+      .intro { max-width: 320px; font-size: 14px; }
+      .stage {
+        display: flex;
+        min-height: 0;
+        flex-direction: column;
+        gap: 15px;
+        margin-block: 24px;
+      }
+      .circle-grid {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
+        justify-items: center;
+        column-gap: 14px;
+      }
+      .space-circle { padding: 12px; gap: 9px; }
+      .circle-mark { width: 36px; height: 36px; font-size: 10px; }
+      .circle-mark svg { width: 18px; height: 18px; }
+      .circle-name { font-size: 15px; }
+      .mobile-notices {
+        display: grid;
+        width: 100%;
+        gap: 9px;
+      }
+      .mobile-notices h2 {
+        margin: 0;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: .17em;
+        text-align: center;
+        text-transform: uppercase;
+      }
+      .notice-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .sticky-note {
+        position: relative;
+        padding: 22px 12px 13px;
+        background: #f5f5f5;
+        color: var(--black);
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%);
+      }
+      .sticky-note:nth-child(2) { background: #e2e2e2; }
+      .sticky-note::before {
+        position: absolute;
+        top: 7px;
+        left: calc(50% - 3px);
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--black);
+        content: "";
+      }
+      .sticky-note::after {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 12px;
+        height: 12px;
+        background: #bdbdbd;
+        content: "";
+      }
+      .sticky-note strong {
+        display: block;
+        font-size: 13px;
+        line-height: 1.2;
+      }
+      .sticky-note p {
+        margin: 4px 0 0;
+        color: #353535;
+        font-size: 12px;
+        line-height: 1.3;
+      }
+      .spine { width: 100%; }
+      .spine-title { margin-bottom: 11px; }
+      .shared-list {
+        --node-size: 44px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0;
+      }
+      .shared-list::before {
+        inset: calc(var(--node-size) / 2) calc(100% / 6) auto;
+        width: auto;
+        height: 2px;
+        transform: translateY(-50%);
+      }
+      .shared-link {
+        min-height: 0;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: var(--node-size) auto;
+        align-items: start;
+        justify-items: center;
+        gap: 7px;
+        text-align: center;
+      }
+      .shared-icon {
+        justify-self: center;
+        transform: none;
+      }
+      .shared-name {
+        grid-column: 1;
+        grid-row: 2;
+        margin: 0;
+        font-size: clamp(11px, 3.05vw, 13px);
+      }
+      .selection {
+        min-height: 68px;
+        border-radius: 18px;
+        padding: 13px;
+      }
+      .shared-link[data-space="Noticeboard"],
+      .selection.is-noticeboard { display: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
   </style>
 </head>
 <body>
-<div class="shell">
-  <aside class="sidebar" id="sidebar">
-    <div class="brand"><div class="brand-mark">B</div><div><strong>Bridge Team</strong><small>Shared workspace</small></div></div>
-    <div><div class="section-label">WORKSPACE</div><nav class="nav-group" id="mainNav">
-      <button class="nav-link active" data-view="board"><span class="icon">▦</span>Board</button>
-      <button class="nav-link" data-view="conversations"><span class="icon">◯</span>Conversations</button>
-      <button class="nav-link" data-view="tasks"><span class="icon">☑</span>Tasks</button>
-      <button class="nav-link" data-view="files"><span class="icon">▱</span>Shared files</button>
-      <button class="nav-link" data-view="email"><span class="icon">✉</span>Email</button>
-    </nav></div>
-    <div><div class="space-head"><div class="section-label" style="margin-bottom:0">ORGANIZATION SPACES</div><button class="add-small" aria-label="Add space">＋</button></div>
-      <div class="nav-group"><button class="space-link nav-link" data-view="board"><span class="icon">♧</span>Whole team</button>
-        <button class="space-link"><span class="space-dot"></span>Bridge Kids</button><button class="space-link indent" data-view="board">Board</button><button class="space-link indent">Committees</button>
-        <button class="space-link"><span class="space-dot blue"></span>Our Place</button><button class="space-link indent">Board</button><button class="space-link indent">Boutique</button>
-        <button class="space-link"><span class="space-dot green"></span>Kizazi</button>
+  <main class="page">
+    <header class="top">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">BK</span>
+        <span>Bridge Kids</span>
       </div>
-    </div>
-    <div class="help"><span class="avatar">?</span><div><b>Need a hand?</b><br><small>Start a conversation with the team.</small></div></div>
-    <div class="user"><div class="avatar">S</div><div><b>Steph</b><br><small class="fine">Workspace member</small></div><span style="margin-left:auto;color:#82908a">···</span></div>
-  </aside>
-  <main class="main">
-    <header class="topbar"><div style="display:flex;align-items:center;gap:11px"><button class="round-btn mobile-menu" id="menuBtn" aria-label="Open menu">☰</button><div class="crumb">Bridge team&nbsp; › &nbsp;<b id="crumbPage">Board</b></div></div><div class="top-actions"><span class="sync"><i></i> Shared and up to date</span><button class="round-btn" aria-label="Search">⌕</button><div class="avatar">S</div></div></header>
-    <div class="content">
-      <section class="view active" id="view-board">
-        <div class="eyebrow">TEAM WORKSPACE</div><div class="heading-row"><div><h1>Team overview</h1><p class="subtitle">Choose a team or see what needs attention.</p></div><button class="primary" data-action="add-task">＋ Add task</button></div>
-        <div class="filters"><button class="pill active" data-filter="all">All teams</button><button class="pill" data-filter="bk"><span class="space-dot"></span>Bridge Kids</button><button class="pill" data-filter="op"><span class="space-dot blue"></span>Our Place</button><button class="pill" data-filter="kz"><span class="space-dot green"></span>Kizazi</button></div>
-        <div class="teams"><article class="team-card" data-team="bk"><div class="card-top"><span class="team-avatar">BK</span><span class="count">2 spaces</span></div><h3>Bridge Kids</h3><p>Bridge Kids International</p><div class="team-foot"><span>0 open tasks</span><button class="text-btn">View&nbsp; ›</button></div></article>
-          <article class="team-card" data-team="op"><div class="card-top"><span class="team-avatar blue">OP</span><span class="count">5 spaces</span></div><h3>Our Place</h3><p>Our Place Cafe</p><div class="team-foot"><span>0 open tasks</span><button class="text-btn">View&nbsp; ›</button></div></article>
-          <article class="team-card" data-team="kz"><div class="card-top"><span class="team-avatar green">KZ</span><span class="count">2 spaces</span></div><h3>Kizazi</h3><p>Kizazi</p><div class="team-foot"><span>0 open tasks</span><button class="text-btn">View&nbsp; ›</button></div></article></div>
-        <div class="lower"><section class="panel"><div class="panel-header"><div><h2>Recent updates</h2><span class="muted">Latest notes from your teams</span></div><button class="text-btn" data-view="conversations">Open chat ↗</button></div><div class="empty"><div class="empty-icon">▢</div><strong>Your team chat starts here</strong><p>Post the first update to the whole team or start a conversation in an organization space.</p><a href="#" data-view="conversations">Go to whole-team chat&nbsp; ›</a></div></section>
-          <section class="panel"><div class="panel-header"><div><h2>Tasks to do</h2><span class="muted">Shared next steps</span></div><button class="text-btn" data-view="tasks">All tasks ↗</button></div><div class="empty"><div class="empty-icon">☑</div><strong>No open tasks yet</strong><p>Add a task so the next step has a clear home.</p><a href="#" data-action="add-task">Add a task&nbsp; ＋</a></div></section></div>
+      <h1>Shared workspace</h1>
+      <p class="intro">Choose an organization, then open a shared space.</p>
+    </header>
+
+    <section class="stage" aria-label="Workspace navigation">
+      <div class="circle-column circle-grid" aria-label="Organizations">
+        <button class="space-circle is-current" type="button" data-workspace="Bridge Kids International" aria-pressed="true">
+          <span class="circle-mark" aria-hidden="true">BK</span>
+          <span class="circle-name">Bridge Kids International</span>
+        </button>
+        <button class="space-circle" type="button" data-workspace="Our Place @ Ben Washer Park" aria-pressed="false">
+          <span class="circle-mark" aria-hidden="true">OP</span>
+          <span class="circle-name">Our Place @ Ben Washer Park</span>
+        </button>
+      </div>
+
+      <section class="mobile-notices" aria-labelledby="pinned-notices-title">
+        <h2 id="pinned-notices-title">Pinned notices · demo</h2>
+        <ul class="notice-list">
+          <li class="sticky-note">
+            <strong>Board agenda</strong>
+            <p>Add discussion items for the next meeting.</p>
+          </li>
+          <li class="sticky-note">
+            <strong>Volunteer signup</strong>
+            <p>Share open shifts and upcoming events.</p>
+          </li>
+        </ul>
       </section>
-      <section class="view" id="view-conversations"><div class="section-title"><div class="eyebrow">WORKSPACE</div><h1>Conversations</h1><p class="subtitle">Team discussions in one shared place.</p></div><section class="panel empty"><div class="empty-icon">◯</div><strong>Your team chat starts here</strong><p>Start a whole-team conversation or open a space for a focused discussion.</p><button class="primary" style="margin-top:8px" data-action="start-chat">＋ Start a conversation</button></section></section>
-      <section class="view" id="view-tasks"><div class="section-title"><div class="eyebrow">WORKSPACE</div><div class="heading-row"><div><h1>Tasks</h1><p class="subtitle">Shared next steps for your teams.</p></div><button class="primary" data-action="add-task">＋ Add task</button></div></div><section class="panel empty"><div class="empty-icon">☑</div><strong>No open tasks yet</strong><p>When your team adds a task, it will appear here.</p></section></section>
-      <section class="view" id="view-files"><div class="section-title"><div class="eyebrow">WORKSPACE</div><h1>Shared files</h1><p class="subtitle">Files and documents for the team.</p></div><section class="panel empty"><div class="empty-icon">▱</div><strong>No shared files yet</strong><p>Team files will be collected here.</p></section></section>
-      <section class="view" id="view-email"><div class="eyebrow">WORKSPACE</div><div class="heading-row" style="margin-bottom:18px"><div><h1>Email</h1><p class="subtitle">Four inbox views, one shared mailbox.</p></div><a class="primary" style="text-decoration:none" href="https://mail.google.com/" target="_blank" rel="noreferrer">✉ Open shared inbox</a></div>
-        <div class="inbox-layout"><aside class="panel inbox-nav"><div class="inbox-label">INBOXES</div><div class="inbox-nav-list" id="inboxNav"><button class="inbox-item active" data-inbox="all"><span class="mail-dot gray"></span><span><b>All inboxes</b><small>Shared mailbox</small></span></button><button class="inbox-item" data-inbox="opbwp"><span class="mail-dot blue"></span><span><b>OPBWP</b><small>Our Place</small></span></button><button class="inbox-item" data-inbox="business"><span class="mail-dot gray"></span><span><b>Business</b><small>Shared mailbox</small></span></button><button class="inbox-item" data-inbox="kizazi-fund"><span class="mail-dot green"></span><span><b>Kizazi Fund</b><small>Kizazi</small></span></button><button class="inbox-item" data-inbox="bk-groups"><span class="mail-dot"></span><span><b>BK Groups</b><small>Bridge Kids</small></span></button></div><button class="compose" data-action="compose">＋ Compose draft</button></aside>
-          <section class="panel"><div class="email-heading"><div><h2 id="inboxTitle">All inboxes</h2><span class="mailbox">Messages from the shared mailbox, grouped by address</span></div><button class="round-btn" aria-label="Search email">⌕</button></div><div class="empty email-empty"><div class="empty-icon">✉</div><strong id="inboxEmptyTitle">Your shared inbox</strong><p id="inboxEmptyCopy">Incoming mail for OPBWP, Business, Kizazi Fund, and BK Groups will appear here when the mailbox feed is connected.</p><span class="mailbox">Google Workspace · Message feed not connected</span></div></section></div>
-        <div class="setup"><span>ⓘ</span><span>The four inbox views are set up. Connect the main Google Workspace account and mail feed to receive live messages. Address aliases and routing still need to be confirmed with the client.</span></div>
-      </section>
-      <footer class="fine" style="text-align:center;margin-top:30px">Bridge Team Workspace · Preview</footer>
-    </div>
+
+      <nav class="spine" aria-label="Shared spaces">
+        <h2 class="spine-title">Shared spaces</h2>
+        <div class="shared-list">
+          <button class="shared-link is-active" type="button" data-space="Noticeboard" aria-pressed="true">
+            <span class="shared-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4h8l2 3-2 3H8L6 7l2-3Z"/><path d="M12 10v10M9 20h6"/></svg>
+            </span>
+            <span class="shared-name">Noticeboard</span>
+          </button>
+          <button class="shared-link" type="button" data-space="Chat" aria-pressed="false">
+            <span class="shared-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11.5a7.5 7.5 0 0 1-7.8 7.5 8.5 8.5 0 0 1-3.7-.8L4 20l1.3-3.7A7.2 7.2 0 0 1 4 12c0-4.2 3.6-7.5 8.2-7.5S20 7.3 20 11.5Z"/></svg>
+            </span>
+            <span class="shared-name">Chat</span>
+          </button>
+          <button class="shared-link" type="button" data-space="Shared Files" aria-pressed="false">
+            <span class="shared-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5h7l2 2h9v10.8a1.7 1.7 0 0 1-1.7 1.7H4.7A1.7 1.7 0 0 1 3 19.3V6.5Z"/><path d="M3.5 10h17"/></svg>
+            </span>
+            <span class="shared-name">Shared Files</span>
+          </button>
+          <button class="shared-link" type="button" data-space="Email" aria-pressed="false">
+            <span class="shared-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="1.8"/><path d="m4 7 8 6 8-6"/></svg>
+            </span>
+            <span class="shared-name">Email</span>
+          </button>
+        </div>
+      </nav>
+
+      <div class="circle-column circle-grid" aria-label="More workspaces">
+        <button class="space-circle" type="button" data-workspace="KIZAZI" aria-pressed="false">
+          <span class="circle-mark" aria-hidden="true">K</span>
+          <span class="circle-name">KIZAZI</span>
+        </button>
+        <button class="space-circle" type="button" data-admin="true" aria-pressed="false">
+          <span class="circle-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1a1.8 1.8 0 0 1-2.5 2.5l-.1-.1a1.8 1.8 0 0 0-3 .9v.2a1.8 1.8 0 0 1-3.6 0v-.2a1.8 1.8 0 0 0-3-.9l-.1.1a1.8 1.8 0 0 1-2.5-2.5l.1-.1a1.8 1.8 0 0 0-.9-3h-.2a1.8 1.8 0 0 1 0-3.6h.2a1.8 1.8 0 0 0 .9-3l-.1-.1a1.8 1.8 0 0 1 2.5-2.5l.1.1a1.8 1.8 0 0 0 3-.9v-.2a1.8 1.8 0 0 1 3.6 0v.2a1.8 1.8 0 0 0 3 .9l.1-.1a1.8 1.8 0 0 1 2.5 2.5l-.1.1a1.8 1.8 0 0 0 .9 3h.2a1.8 1.8 0 0 1 0 3.6h-.2a1.8 1.8 0 0 0-.9 3Z"/></svg>
+          </span>
+          <span class="circle-name">Admin Settings</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="selection is-noticeboard" aria-live="polite">
+      <span class="selection-dot" aria-hidden="true"></span>
+      <div class="selection-copy">
+        <strong class="selection-title" id="selection-title">Bridge Kids International · Noticeboard</strong>
+        <span class="selection-description" id="selection-description">Pinned notices, announcements, and flyers for this organization.</span>
+      </div>
+    </section>
+    <p class="demo-note">Visual demo only · no live chat, file storage, or email connection yet.</p>
   </main>
-</div>
-<script>
-  const views=[...document.querySelectorAll('.view')], nav=[...document.querySelectorAll('[data-view]')];
-  function showView(name){views.forEach(v=>v.classList.toggle('active',v.id==='view-'+name));document.querySelectorAll('#mainNav .nav-link').forEach(b=>b.classList.toggle('active',b.dataset.view===name));document.getElementById('crumbPage').textContent=name==='board'?'Board':name[0].toUpperCase()+name.slice(1);document.getElementById('sidebar').classList.remove('open');window.scrollTo({top:0,behavior:'smooth'});}
-  nav.forEach(el=>el.addEventListener('click',e=>{e.preventDefault();if(el.dataset.view)showView(el.dataset.view)}));
-  document.getElementById('menuBtn').addEventListener('click',()=>document.getElementById('sidebar').classList.toggle('open'));
-  document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.team-card').forEach(c=>c.hidden=b.dataset.filter!=='all'&&c.dataset.team!==b.dataset.filter)}));
-  const inboxes={all:['All inboxes','Your shared inbox','Incoming mail for OPBWP, Business, Kizazi Fund, and BK Groups will appear here when the mailbox feed is connected.'],opbwp:['OPBWP inbox','Your OPBWP inbox','Incoming mail routed to OPBWP will appear here when the shared mailbox feed is connected.'],business:['Business inbox','Your Business inbox','Incoming mail routed to Business will appear here when the shared mailbox feed is connected.'],'kizazi-fund':['Kizazi Fund inbox','Your Kizazi Fund inbox','Incoming mail routed to Kizazi Fund will appear here when the shared mailbox feed is connected.'],'bk-groups':['BK Groups inbox','Your BK Groups inbox','Incoming mail routed to BK Groups will appear here when the shared mailbox feed is connected.']};
-  document.querySelectorAll('[data-inbox]').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('[data-inbox]').forEach(x=>x.classList.toggle('active',x===b));const x=inboxes[b.dataset.inbox];document.getElementById('inboxTitle').textContent=x[0];document.getElementById('inboxEmptyTitle').textContent=x[1];document.getElementById('inboxEmptyCopy').textContent=x[2]}));
-  document.querySelectorAll('[data-action]').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.action==='add-task')showView('tasks');else if(b.dataset.action==='compose')alert('Draft composition will be available when the shared mailbox is connected.');else if(b.dataset.action==='start-chat')alert('Team conversations will be available when the shared workspace is connected.')}));
-</script>
+
+  <script>
+    (function () {
+      var currentWorkspace = "Bridge Kids International";
+      var activeSpace = "Noticeboard";
+      var workspaceButtons = Array.prototype.slice.call(document.querySelectorAll("[data-workspace]"));
+      var spaceButtons = Array.prototype.slice.call(document.querySelectorAll("[data-space]"));
+      var adminButton = document.querySelector("[data-admin]");
+      var selection = document.querySelector(".selection");
+      var title = document.getElementById("selection-title");
+      var description = document.getElementById("selection-description");
+
+      var descriptions = {
+        "Noticeboard": "Pinned notices, announcements, and flyers for this organization.",
+        "Chat": "Board and committee conversations for this organization.",
+        "Shared Files": "Shared documents, photos, and committee materials.",
+        "Email": "Open the shared inbox for this organization.",
+        "Admin Settings": "Manage members, roles, and organization settings."
+      };
+
+      function renderSelection() {
+        workspaceButtons.forEach(function (button) {
+          var selected = button.getAttribute("data-workspace") === currentWorkspace;
+          button.classList.toggle("is-current", selected);
+          button.setAttribute("aria-pressed", selected ? "true" : "false");
+        });
+
+        spaceButtons.forEach(function (button) {
+          var selected = button.getAttribute("data-space") === activeSpace;
+          button.classList.toggle("is-active", selected);
+          button.setAttribute("aria-pressed", selected ? "true" : "false");
+        });
+
+        var adminSelected = activeSpace === "Admin Settings";
+        adminButton.classList.toggle("is-admin-active", adminSelected);
+        adminButton.setAttribute("aria-pressed", adminSelected ? "true" : "false");
+        selection.classList.toggle("is-noticeboard", activeSpace === "Noticeboard");
+        title.textContent = currentWorkspace + " · " + activeSpace;
+        description.textContent = descriptions[activeSpace];
+      }
+
+      workspaceButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          currentWorkspace = button.getAttribute("data-workspace");
+          activeSpace = "Noticeboard";
+          renderSelection();
+        });
+      });
+
+      spaceButtons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          activeSpace = button.getAttribute("data-space");
+          renderSelection();
+        });
+      });
+
+      adminButton.addEventListener("click", function () {
+        activeSpace = "Admin Settings";
+        renderSelection();
+      });
+    }());
+  </script>
 </body>
 </html>
