@@ -31,15 +31,6 @@ service cloud.firestore {
       allow update, delete: if admin(orgId);
     }
 
-    match /orgs/{orgId}/files/{fileId} {
-      allow read: if member(orgId);
-      allow create: if member(orgId)
-        && request.resource.data.uid == request.auth.uid
-        && request.resource.data.name is string
-        && request.resource.data.path is string;
-      allow update, delete: if admin(orgId) ||
-        (member(orgId) && resource.data.uid == request.auth.uid);
-    }
     match /{document=**} { allow read, write: if false; }
   }
 }
