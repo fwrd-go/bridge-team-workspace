@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() { return request.auth != null && request.auth.token.email != null; }
+    function emailKey() { return request.auth.token.email.lower(); }
+    function member(orgId) {
+      return signedIn() && exists(/databases/$(database)/documents/orgs/$(orgId)/members/$(emailKey()));
+    }
+    function admin(orgId) {
+      return member(orgId) &&
+        get(/databases/$(database)/documents/orgs/$(orgId)/members/$(emailKey())).data.role == 'admin';
+    }
+
+    match /orgs/{orgId}/members/{email} {
+      allow get: if signedIn() && (email == emailKey() || admin(orgId));
+      allow list: if admin(orgId);
+      allow create, update: if admin(orgId)
+        && request.resource.data.email == email
+        && request.resource.data.role in ['admin', 'member'];
+      allow delete: if admin(orgId) && email != emailKey();
+    }
+
+    match /orgs/{orgId}/rooms/{roomId}/messages/{messageId} {
+      allow read: if member(orgId);
+      allow create: if member(orgId)
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.text is string
+        && request.resource.data.text.size() > 0
+        && request.resource.data.text.size() <= 2000;
+      allow update, delete: if admin(orgId);
+    }
+
+    match /orgs/{orgId}/files/{fileId} {
+      allow read: if member(orgId);
+      allow create: if member(orgId)
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.name is string
+        && request.resource.data.path is string;
+      allow update, delete: if admin(orgId) ||
+        (member(orgId) && resource.data.uid == request.auth.uid);
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
