@@ -15,20 +15,16 @@ The Firebase project is `bridge-team-workspace`. This is the secure workspace pa
 - Project and Web app created
 - Cloud Firestore Standard database created in production mode at `nam5`
 - Project remains on the no-cost Spark plan
-- Google sign-in provider still needs its required public-facing support email selected and saved
+- Google sign-in is not enabled yet; Firebase requires a support email that users will see on the sign-in screen
 - Firestore's production default-deny rules are active; deploy `firestore.rules` after Google sign-in setup
 
 ## Finish setup
 
-1. Select the support email for Google sign-in in Firebase Authentication. It is shown to users on sign-in screens.
+1. Select the support email for Google sign-in in Firebase Authentication. Firebase currently offers `trippeerstephanie@gmail.com`; it will be shown to users on sign-in screens. Do not save it until approved.
 2. In Authentication settings, add `fwrd-go.github.io` as an authorized domain.
 3. Publish `firebase-config.js` using the Web app config from Firebase Console. Firebase client config is public; access control is enforced by the rules.
 4. Deploy the included `firestore.rules` in Firebase Console or with `firebase deploy --only firestore:rules`.
-5. Add the owner's Google email as an initial admin membership document for each organization in Firestore:
-   - `orgs/bridge-kids/members/OWNER_EMAIL`
-   - `orgs/our-place/members/OWNER_EMAIL`
-   - `orgs/kizazi/members/OWNER_EMAIL`
-   Use fields `email` (lowercase) and `role: "admin"`. This first admin must be seeded in the console because no admin exists yet.
+5. The initial admin memberships are already seeded for `fwrd.go@gmail.com` in all three organizations. The Firebase project owner account and workspace admin account are separate.
 6. Share each Drive folder with the Google accounts that should have access. Firebase invitations and Drive folder permissions are separate controls.
 
 ## Files and billing
