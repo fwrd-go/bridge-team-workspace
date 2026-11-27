@@ -1,0 +1,16 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    function signedIn() { return request.auth != null && request.auth.token.email != null; }
+    function member(orgId) {
+      return signedIn() &&
+        firestore.exists(/databases/(default)/documents/orgs/$(orgId)/members/$(request.auth.token.email.lower()));
+    }
+    match /orgs/{orgId}/files/{uid}/{filename} {
+      allow read: if member(orgId);
+      allow write: if member(orgId) && request.auth.uid == uid
+        && request.resource.size < 25 * 1024 * 1024;
+    }
+    match /{allPaths=**} { allow read, write: if false; }
+  }
+}
