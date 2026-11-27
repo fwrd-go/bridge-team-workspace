@@ -1,32 +1,45 @@
-# Firebase workspace preview setup
+# Firebase workspace
 
-This is a separate authenticated preview. The existing public dashboard at `index.html` remains unchanged.
+The Firebase project is `bridge-team-workspace`. This is the secure workspace page at `secure.html`; the existing public dashboard at `index.html` remains unchanged.
 
-## What this build does
+## Planned behavior
 
 - Google sign-in for invited members
 - Organization-specific membership for Bridge Kids, Our Place, and KIZAZI
 - In-dashboard organization chat backed by Cloud Firestore
-- Organization file uploads and downloads backed by Cloud Storage
-- Admin role can add a member by Google email
-- Gmail opens the existing Google Workspace inbox link
+- Files buttons open each organization's Google Drive folder
+- Gmail opens the Google Workspace inbox link
 
-## One-time Firebase setup
+## Current Firebase setup
 
-1. Create a Firebase project and register a Web app.
-2. In Authentication, enable Google as a sign-in provider. Add the GitHub Pages domain under authorized domains.
-3. Create a Cloud Firestore database and a Cloud Storage bucket.
-4. Copy `firebase-config.example.js` to `firebase-config.js`, then paste the Firebase Web app config into it.
-5. Deploy `firestore.rules` and `storage.rules` to the Firebase project. The included `firebase.json` supports `firebase deploy --only firestore:rules,storage`.
-6. In Firestore, seed the first administrator membership document manually:
-   `orgs/bridge-kids/members/OWNER_GOOGLE_EMAIL`
-   with fields `email` (lowercase) and `role: "admin"`. Repeat for each organization the owner administers. This first seed must be done in Firebase Console because no admin exists yet.
-7. Open `secure.html`, sign in as that Google account, and use Invite someone to add the other members.
+- Project and Web app created
+- Cloud Firestore Standard database created in production mode at `nam5`
+- Project remains on the no-cost Spark plan
+- Google sign-in provider still needs its required public-facing support email selected and saved
+- Firestore's production default-deny rules are active; deploy `firestore.rules` after Google sign-in setup
 
-## Before sharing
+## Finish setup
 
-Cloud Storage for Firebase currently requires a billing-linked Blaze project. Set usage alerts in Google Cloud Billing before inviting people. The rules limit each upload to 25 MB and require organization membership, but alerts are not a hard spending stop.
+1. Select the support email for Google sign-in in Firebase Authentication. It is shown to users on sign-in screens.
+2. In Authentication settings, add `fwrd-go.github.io` as an authorized domain.
+3. Publish `firebase-config.js` using the Web app config from Firebase Console. Firebase client config is public; access control is enforced by the rules.
+4. Deploy the included `firestore.rules` in Firebase Console or with `firebase deploy --only firestore:rules`.
+5. Add the owner's Google email as an initial admin membership document for each organization in Firestore:
+   - `orgs/bridge-kids/members/OWNER_EMAIL`
+   - `orgs/our-place/members/OWNER_EMAIL`
+   - `orgs/kizazi/members/OWNER_EMAIL`
+   Use fields `email` (lowercase) and `role: "admin"`. This first admin must be seeded in the console because no admin exists yet.
+6. Share each Drive folder with the Google accounts that should have access. Firebase invitations and Drive folder permissions are separate controls.
 
-Do not commit a real service account key. Firebase Web app config is client-side by design; data protection comes from the deployed Auth checks and security rules. Keep the rules default-deny.
+## Files and billing
 
-This is a static GitHub Pages app. Chat and file data are protected by Firebase rules. The page URL itself is public, so the Firebase sign-in gate—not GitHub Pages—protects the workspace data.
+Files use Google Drive, so this workspace does not use Firebase Storage. Firebase's Storage product requires the pay-as-you-go Blaze plan to provision a bucket; this setup avoids that. Do not switch the Firebase project to Blaze for this design.
+
+The Drive folders are owned by `fwrd.go@gmail.com`:
+- Bridge Kids International: https://drive.google.com/drive/folders/1XgoqXSXD4ZtKCtTaJESj0trnd8oxEjnV
+- Our Place @ Ben Washer Park: https://drive.google.com/drive/folders/1CNHoAp9Up0iH-Nm1voSaW__MYOfHJyNC
+- KIZAZI: https://drive.google.com/drive/folders/1140jGNxZ3zM4FqQCYdkgXIi5iTnq07xy
+
+Folder links respect Google Drive permissions. A user who is signed into the dashboard still needs permission to the matching Drive folder to open its files.
+
+This is a static GitHub Pages app. The page URL itself is public; Firebase sign-in and Firestore rules protect chat and membership data.
