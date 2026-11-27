@@ -526,7 +526,7 @@
         <span class="selection-description" id="selection-description"></span>
       </div>
     </section>
-    <p class="demo-note">Visual demo only · no live chat, file storage, or email connection yet.</p>
+    <p class="demo-note">Chat, Drive, and Gmail open in Google. Organization spaces, folders, and member access need to be set up in Google.</p>
   </main>
 
   <script>
@@ -542,10 +542,12 @@
       var title = document.getElementById("selection-title");
       var description = document.getElementById("selection-description");
 
+      var googleDestinations = {"Chat":"https://chat.google.com/","Shared Files":"https://drive.google.com/drive/my-drive","Email":"https://mail.google.com/mail/u/0/#inbox"};
+
       var descriptions = {
-        "Chat": "Board and committee conversations for this organization.",
-        "Shared Files": "Shared documents, photos, and committee materials.",
-        "Email": "Open the shared inbox for this organization.",
+        "Chat": "Opens Google Chat. Choose this organization space there.",
+        "Shared Files": "Opens Google Drive. Choose this organization folder there.",
+        "Email": "Opens your Gmail inbox.",
         "Admin Settings": "Manage members, roles, and organization settings."
       };
 
@@ -585,6 +587,7 @@
           activeSpace = button.getAttribute("data-space");
           adminOpen = false;
           renderSelection();
+          window.open(googleDestinations[activeSpace], "_blank", "noopener,noreferrer");
         });
       });
 
