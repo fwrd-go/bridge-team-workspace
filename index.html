@@ -328,10 +328,39 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     if(statusEl){statusEl.textContent=firebaseStatus.message||'Firebase status unavailable';statusEl.dataset.state=firebaseStatus.state||'local'}
     if(!authPanel)return;
     if(!firebaseStatus.configured){authPanel.innerHTML='<p class="small muted">Save the config above first. No password is stored by this demo.</p>';return}
-    if(firebaseStatus.user){authPanel.innerHTML='<div class="card" style="margin:10px 0 0"><strong>Signed in as '+esc(firebaseStatus.user.email||'Firebase user')+'</strong><p class="small muted">Firebase UID for member approval</p><div class="toolbar"><code style="overflow-wrap:anywhere">'+esc(firebaseStatus.user.uid||'')+'</code><button class="mini" type="button" data-action="firebase-copy-uid">Copy UID</button></div><button class="button" type="button" data-action="firebase-signout" style="margin-top:10px">Sign out</button></div>';return}
+    if(firebaseStatus.user){authPanel.innerHTML='<div class="card" style="margin:10px 0 0"><strong>Signed in as '+esc(firebaseStatus.user.email||'Firebase user')+'</strong><p class="small muted">Organization access is checked against this email in Firebase.</p><button class="button" type="button" data-action="firebase-signout" style="margin-top:10px">Sign out</button></div>';return}
     authPanel.innerHTML='<form class="form-stack" data-form="firebase-signin"><div class="field"><label>Email</label><input name="email" type="email" autocomplete="username" required placeholder="Firebase account email"></div><div class="field"><label>Password</label><input name="password" type="password" autocomplete="current-password" required placeholder="Password"></div><div class="toolbar"><button class="button primary" type="submit">Sign in</button><button class="button" type="button" data-action="firebase-google">Sign in with Google</button></div></form><p class="small muted">Use an account enabled in Firebase Authentication. This sign-in form never saves your password.</p>';
   }
+  let firebaseOrgKeys=null;
   window.addEventListener('bkop-firebase-status',e=>updateFirebaseUI(e.detail));
+  window.addEventListener('bkop-firebase-memberships',e=>{
+    const keys=e.detail&&e.detail.orgKeys;
+    firebaseOrgKeys=Array.isArray(keys)?keys:null;
+    if(firebaseOrgKeys&&firebaseOrgKeys.length&&!firebaseOrgKeys.includes(data.org))data.org=firebaseOrgKeys[0];
+    try{localStorage.setItem(KEY,JSON.stringify(data))}catch(err){}
+    render();
+  });
+  window.addEventListener('bkop-org-state',e=>{
+    const detail=e.detail||{},orgKey=detail.orgKey,state=detail.state||{};
+    if(!orgKey)return;
+    ['notices','tasks','events','files'].forEach(k=>{data[k]=data[k].filter(item=>item.org!==orgKey).concat(Array.isArray(state[k])?state[k]:[])});
+    try{localStorage.setItem(KEY,JSON.stringify(data))}catch(err){}
+    render();
+  });
+  window.addEventListener('bkop-board-messages',e=>{
+    const detail=e.detail||{},orgKey=detail.orgKey,messages=Array.isArray(detail.messages)?detail.messages:[];
+    data.messages=data.messages.filter(item=>item.org!==orgKey||item.room!=='Board').concat(messages);
+    try{localStorage.setItem(KEY,JSON.stringify(data))}catch(err){}
+    render();
+  });
+  window.addEventListener('bkop-shared-committee',e=>{
+    const detail=e.detail||{},roomName=detail.room;
+    if(!roomName)return;
+    data.messages=data.messages.filter(item=>!(item.org==='shared'&&item.room===roomName)).concat((detail.messages||[]).map(item=>Object.assign({org:'shared',room:roomName},item)));
+    data.tasks=data.tasks.filter(item=>!(item.org==='shared'&&item.room===roomName)).concat((detail.tasks||[]).map(item=>Object.assign({org:'shared',room:roomName},item)));
+    try{localStorage.setItem(KEY,JSON.stringify(data))}catch(err){}
+    render();
+  });
   window.addEventListener('bkop-cloud-state',e=>{
     const incoming=e.detail&&e.detail.state;if(!incoming)return;
     data=normalizeState(Object.assign({},data,incoming));
@@ -351,7 +380,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     const active=adminActive
       ? `<div class="hero-org admin" role="group" aria-label="Admin Settings selected"><span class="hero-mark">⚙</span><span class="hero-name">Admin Settings</span><span class="hero-caption">Workspace controls</span></div>`
       : `<div class="hero-org" role="group" aria-label="${esc(orgName())} selected"><span class="hero-mark">${ORG_MARKS[data.org]||'BK'}</span><span class="hero-name">${esc(orgName())}</span><span class="hero-caption">Current workspace</span></div>`;
-    const orgOptions=Object.entries(ORGS).filter(([key])=>adminActive||key!==data.org).map(([key,label])=>`<button class="switch-space" type="button" data-org="${key}" aria-label="Switch to ${esc(label)}" aria-pressed="false"><span class="switch-mark">${ORG_MARKS[key]}</span><span class="switch-name">${esc(label)}</span></button>`).join('');
+    const orgOptions=Object.entries(ORGS).filter(([key])=>(firebaseOrgKeys===null||firebaseOrgKeys.includes(key))&&(adminActive||key!==data.org)).map(([key,label])=>`<button class="switch-space" type="button" data-org="${key}" aria-label="Switch to ${esc(label)}" aria-pressed="false"><span class="switch-mark">${ORG_MARKS[key]}</span><span class="switch-name">${esc(label)}</span></button>`).join('');
     const adminOption=adminActive?'':`<button class="switch-space admin" type="button" data-view="admin" aria-label="Open Admin Settings" aria-pressed="false"><span class="switch-mark">⚙</span><span class="switch-name">Admin Settings</span></button>`;
     $('#focusSpace').innerHTML=active;
     $('#otherSpaces').innerHTML=`<div class="switch-title">${adminActive?'Organizations':'Switch space'}</div><div class="switch-list">${orgOptions}${adminOption}</div>`;
@@ -397,7 +426,6 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     if(a==='calendar-filter'){calendarFilter=b.dataset.value||'all';render();return}
     if(a==='firebase-google'){if(!window.BKOPFirebase){toast('Firebase module is still loading');return}try{await window.BKOPFirebase.signInGoogle()}catch(err){toast(err.message||'Google sign-in failed')}return}
     if(a==='firebase-signout'){try{await window.BKOPFirebase?.signOut()}catch(err){toast(err.message||'Sign out failed')}return}
-    if(a==='firebase-copy-uid'){try{await navigator.clipboard.writeText(firebaseStatus.user?.uid||'');toast('Firebase UID copied')}catch(err){toast('Select and copy the UID shown above')}return}
   });
   document.addEventListener('change',e=>{
     const t=e.target;
@@ -432,7 +460,12 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
       const n={id:id(),org:data.org,title:f.get('title').trim(),body:f.get('body').trim(),link,linkLabel:link?'Open link':'',ping:String(f.get('ping')||'none'),attachments:[],pinned:f.has('pinned'),created:stamp()};
       addNoticeFiles(n,f.getAll('attachments'));data.notices.unshift(n);recentlyPostedNoticeId=n.id;lastNoticeAction='posted';editingNoticeId=null;commit();toast(`Posted to ${orgName()} · Notice cards updated`);requestAnimationFrame(()=>document.getElementById('topNotices')?.scrollIntoView({behavior:'smooth',block:'start'}));return;
     }
-    if(kind==='message'){data.messages.push({id:id(),org:roomScope(room()),room:room(),by:'You',body:f.get('body').trim(),created:stamp()});commit();toast(roomScope(room())==='shared'?'Message added to shared committee':'Message added to demo');return}
+    if(kind==='message'){
+      const message={id:id(),org:roomScope(room()),room:room(),by:'You',body:f.get('body').trim(),created:stamp()};
+      data.messages.push(message);
+      if(message.room==='Board'&&window.BKOPFirebase&&window.BKOPFirebase.sendMessage){try{await window.BKOPFirebase.sendMessage(message)}catch(err){toast(err.message||'Message saved locally; Firebase could not send it')}}
+      commit();toast(roomScope(room())==='shared'?'Message added to shared committee':'Message added to demo');return
+    }
     if(kind==='task'){data.tasks.unshift({id:id(),org:roomScope(room()),room:room(),title:f.get('title').trim(),assigned:f.get('assigned').trim(),due:f.get('due'),done:false,comments:[]});commit();toast(roomScope(room())==='shared'?'Task added to shared committee':'Task added to demo');return}
     if(kind==='task-comment'){const t=data.tasks.find(x=>x.id===form.dataset.id);if(t){t.comments=t.comments||[];t.comments.push({by:'You',body:f.get('body').trim(),created:stamp()});commit();toast('Comment added')}return}
     if(kind==='event'){data.events.push({id:id(),org:data.org,title:f.get('title').trim(),date:f.get('date'),time:f.get('time'),where:f.get('where').trim()});commit();toast('Event added');return}
