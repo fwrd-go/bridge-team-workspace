@@ -29,7 +29,8 @@
 import {initializeApp} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-app.js";
 import {getAuth,GoogleAuthProvider,signInWithPopup,onAuthStateChanged,signOut} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-auth.js";
 import {getFirestore,doc,getDoc,setDoc,collection,query,orderBy,limit,onSnapshot,addDoc,serverTimestamp} from "https://www.gstatic.com/firebasejs/13.4.0/firebase-firestore.js";
-import {firebaseConfig} from "./firebase-config.js";
+import {firebaseConfig as bundledConfig} from "./firebase-config.js";
+const firebaseConfig=(()=>{try{return JSON.parse(localStorage.getItem("bkop-firebase-config-v1"))||bundledConfig}catch{return bundledConfig}})();
 const orgs=[{id:"bridge-kids",name:"Bridge Kids International"},{id:"our-place",name:"Our Place @ Ben Washer Park"},{id:"kizazi",name:"KIZAZI"}];
 const driveFolders={"bridge-kids":"https://drive.google.com/drive/folders/1XgoqXSXD4ZtKCtTaJESj0trnd8oxEjnV","our-place":"https://drive.google.com/drive/folders/1CNHoAp9Up0iH-Nm1voSaW__MYOfHJyNC","kizazi":"https://drive.google.com/drive/folders/1140jGNxZ3zM4FqQCYdkgXIi5iTnq07xy"};
 const $=s=>document.querySelector(s);const login=$("#login"),appEl=$("#app"),noAccess=$("#no-access"),status=$("#status");
