@@ -316,7 +316,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
       const file=SOCIAL_FILES[m.id];
       const isImage=/\.(jpe?g|png|gif|webp|heic)$/i.test(m.name)||String(m.type||'').startsWith('image/');
       const isPdf=/\.pdf$/i.test(m.name)||m.type==='application/pdf';
-      const thumb=isImage&&SOCIAL_URLS[m.id]?'<img class="social-thumb" src="'+esc(SOCIAL_URLS[m.id])+'" alt="">':'<span class="social-thumb">'+(isPdf?'PDF':'FILE')+'</span>';
+      const thumb=isImage&&SOCIAL_URLS[m.id]?'<img class="social-thumb" src="'+esc(SOCIAL_URLS[m.id])+'" alt="">':'<span class="social-thumb">'+(isPdf?'PDF':isImage?'<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Image"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8" cy="8" r="1.5"/><path d="m3 17 6-6 4 4 3-3 5 5"/></svg><small style="font-size:9px">'+esc((m.name.split('.').pop()||'IMG').toUpperCase())+'</small>':'FILE')+'</span>';
       return '<article class="social-attachment">'+thumb+'<div><div class="social-file-name">'+esc(m.name)+'</div><div class="social-file-meta">'+esc(m.size||'')+' · '+(file?'Ready to share':'Choose again to attach')+'</div></div><div class="comment-actions task-actions"><button class="mini" type="button" data-action="edit-social-file" data-id="'+esc(m.id)+'" aria-label="Replace attachment" title="Replace attachment">✎</button><button class="mini" type="button" data-action="delete-social-file" data-id="'+esc(m.id)+'" aria-label="Remove attachment" title="Remove attachment">×</button></div></article>';
     }).join('');
   }
