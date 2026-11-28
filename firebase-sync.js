@@ -1,3 +1,4 @@
+import { firebaseConfig as bundledConfig } from './firebase-config.js';
 const CONFIG_KEY = 'bkop-firebase-config-v1';
 const STATE_KEY = 'bkop-interactive-demo-v1';
 const FIREBASE_VERSION = '13.4.0';
@@ -305,7 +306,9 @@ emitStatus('local', 'Local demo only · add your Firebase web app config to conn
 
 try {
   const savedConfig = JSON.parse(localStorage.getItem(CONFIG_KEY) || 'null');
-  if (savedConfig) connect(savedConfig).catch(() => {});
+  const bundledIsReady = !!(bundledConfig && bundledConfig.apiKey && bundledConfig.apiKey !== 'PASTE_API_KEY_HERE');
+  const activeConfig = bundledIsReady ? bundledConfig : savedConfig;
+  if (activeConfig) connect(activeConfig).catch(() => {});
 } catch {
-  emitStatus('error', 'The saved Firebase config is invalid. Re-enter the config in Admin Settings.');
+  emitStatus('error', 'The saved Firebase config is invalid. Check the Admin Settings or reload the page.');
 }
