@@ -124,6 +124,8 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .top-note{flex:0 0 46%;width:46%;min-height:85px;max-height:none}.top-note p{-webkit-line-clamp:2}
 }
 @media(min-width:641px){.mobile-workspace-name{display:none}}
+/* Avoid sticky touch hover on inactive workspace switches. */
+@media(hover:none){.switch-space:hover:not([aria-pressed=true]):not([aria-current=page]),.switch-space:focus:not([aria-pressed=true]):not([aria-current=page]){background:#111;color:var(--white);border-color:#777}}
 </style>
 </head>
 <body>
