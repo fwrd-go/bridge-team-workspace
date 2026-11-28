@@ -1,10 +1,11 @@
-// Replace these placeholders with the web app config from Firebase Console.
-// This client config is public; Firestore and Storage security rules protect the data.
+// Firebase web app configuration for the BKOP workspace.
+// Firebase web config is public; Firestore rules limit access to approved organization members.
 export const firebaseConfig = {
-  apiKey: "PASTE_API_KEY_HERE",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDeZo8odfo_s0k94RCxBREfc4I46LVzDt4",
+  authDomain: "bridge-team-workspace.firebaseapp.com",
+  projectId: "bridge-team-workspace",
+  storageBucket: "bridge-team-workspace.firebasestorage.app",
+  messagingSenderId: "558938421819",
+  appId: "1:558938421819:web:263947fa081c38c461ba1e",
+  measurementId: "G-S686Z6NRST"
 };
