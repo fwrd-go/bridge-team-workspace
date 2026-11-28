@@ -1,0 +1,18 @@
+{
+  "name": "BKOP Shared Workspace",
+  "short_name": "BKOP",
+  "description": "Shared workspace demo for Bridge Kids, Our Place, and KIZAZI.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#050505",
+  "icons": [
+    {
+      "src": "./bkop-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
