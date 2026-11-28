@@ -15,17 +15,17 @@ The Firebase project is `bridge-team-workspace`. This is the secure workspace pa
 - Project and Web app created
 - Cloud Firestore Standard database created in production mode at `nam5`
 - Project remains on the no-cost Spark plan
-- Google sign-in is not enabled yet; Firebase requires a support email that users will see on the sign-in screen
+- Email/Password and Google sign-in are enabled; the Google support email is `fwrd.go@gmail.com`
 - Firestore is in production mode and the member-only rules are published
 
 ## Finish setup
 
-1. Select the support email for Google sign-in in Firebase Authentication. Firebase currently offers `trippeerstephanie@gmail.com`; it will be shown to users on sign-in screens. Do not save it until approved.
-2. In Authentication settings, add `fwrd-go.github.io` as an authorized domain.
-3. Publish `firebase-config.js` using the Web app config from Firebase Console. Firebase client config is public; access control is enforced by the rules.
-4. Firestore rules are already published from `firestore.rules`.
-5. The initial admin memberships are already seeded for `fwrd.go@gmail.com` in all three organizations. The Firebase project owner account and workspace admin account are separate.
-6. Share each Drive folder with the Google accounts that should have access. Firebase invitations and Drive folder permissions are separate controls.
+1. Confirm `fwrd-go.github.io` is listed in Authentication → Settings → Authorized domains.
+2. In the BKOP dashboard, open Admin Settings and paste the web app config from Firebase Project settings → Your apps. It is public client config, not a password or service-account key. It is stored in that browser and the secure chat page reuses it.
+3. Publish the current `firestore.rules` from this repository in Firestore → Rules. The older deployed rules allow organization membership and board chat; the added workspace and shared-committee paths enable the dashboard data.
+4. The initial admin memberships are seeded for `fwrd.go@gmail.com` in all three organizations. The Firebase project owner account and workspace admin account are separate.
+5. Sign in with the invited account. Organization access is checked against its email membership document.
+6. Share each Drive folder with the Google accounts that need file access. Firebase membership and Drive folder permissions are separate controls.
 
 ## Files and billing
 
