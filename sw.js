@@ -1,5 +1,5 @@
-const CACHE = 'bkop-demo-shell-v1';
-const SHELL = ['./', './index.html', './firebase-sync.js', './manifest.webmanifest', './bkop-icon.svg'];
+const CACHE = 'bkop-demo-shell-v2';
+const SHELL = ['./', './index.html', './firebase-sync.js', './firebase-config.js', './manifest.webmanifest', './bkop-icon.svg'];
 
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)));
