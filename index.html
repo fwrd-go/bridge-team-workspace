@@ -321,20 +321,6 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     }).join('');
   }
   function enhanceEmailView(){
-    const inboxForm=document.querySelector('form[data-form="inbox"]');
-    if(inboxForm){
-      const section=inboxForm.closest('section'),heading=section&&section.querySelector('h3');
-      if(heading){heading.textContent='One shared inbox';const note=document.createElement('p');note.className='small muted';note.textContent='OPBWP, Business, Kizazi Fund, BK Groups, and Connect all route to this same inbox.';heading.insertAdjacentElement('afterend',note);}
-      const inboxLabel=inboxForm.querySelector('label'),inboxInput=inboxForm.querySelector('input[name="inbox"]');
-      if(inboxLabel)inboxLabel.textContent='Main inbox address';
-      if(inboxInput)inboxInput.placeholder='Enter the shared inbox address';
-    }
-    const aliasForm=document.querySelector('form[data-form="alias"]');
-    if(aliasForm){const label=aliasForm.querySelector('label'),input=aliasForm.querySelector('input[name="alias"]');if(label)label.textContent='Add another alias name';if(input){input.type='text';input.placeholder='Alias name';}}
-    document.querySelectorAll('.alias-row').forEach(function(row){
-      if(row.querySelector('.alias-destination'))return;
-      const destination=document.createElement('span');destination.className='alias-destination';destination.textContent='→ Main inbox';row.insertBefore(destination,row.querySelector('button'));
-    });
     const socialForm=document.querySelector('form[data-form="social"]');
     if(socialForm){
       const blurb=socialForm.previousElementSibling;if(blurb)blurb.textContent='Attach a photo, JPG, or PDF. On supported phones, share the caption and file through the device share sheet, then finish the post in the social app.';
@@ -343,9 +329,9 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
       if(platforms)platforms.insertAdjacentHTML('afterbegin','<button class="button primary" type="submit" name="socialAction" value="share">Share caption + media</button>');
     }
   }
-  function renderEmail(){return `${panelHeader('Email & drafts','Prepare a message and open it in Gmail to review. Nothing is sent by this demo.')}
-    <div class="two-col"><section class="card"><h3>Shared inbox & aliases</h3><form class="form-stack" data-form="inbox"><div class="field"><label>Main Gmail inbox</label><input name="inbox" type="email" value="${esc(data.inbox)}" placeholder="Enter the shared inbox address"></div><button class="button" type="submit">Save inbox for demo</button></form><div class="sep"></div><form class="form-row" data-form="alias"><div class="field"><label>Alias address</label><input name="alias" type="email" required placeholder="Add an existing alias"></div><button class="button" type="submit" style="align-self:end">Add alias</button></form><div style="margin-top:10px">${data.aliases.length?data.aliases.map((a,i)=>`<div class="alias-row"><span>${esc(a)}</span><button class="mini remove" data-action="delete-alias" data-index="${i}">Remove</button></div>`).join(''):'<p class="small muted">Add the actual aliases after confirming them with the client. Routing is not configured in this demo.</p>'}</div>${data.inbox?`<a class="button" href="https://mail.google.com/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-top:12px">Open Gmail inbox</a>`:''}</section>
-    <section class="card"><h3>Draft a message</h3><form class="form-stack" data-form="email-draft"><div class="field"><label>To</label><input name="to" type="email" placeholder="Recipient email"></div><div class="field"><label>Subject</label><input name="subject" maxlength="140" placeholder="Subject"></div><div class="field"><label>Message</label><textarea name="body" placeholder="Write the draft"></textarea></div><button class="button primary" type="submit">Open draft in Gmail</button><p class="small muted" style="margin:0">Gmail opens with a draft for review; this demo never sends it.</p></form></section></div>
+  function renderEmail(){return `${panelHeader('Email','')}
+    <div class="two-col"><section class="card"><h3>CONNECT</h3><a class="button primary" href="https://mail.google.com/" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Open CONNECT inbox</a></section>
+    <section class="card"><h3>Draft a message</h3><form class="form-stack" data-form="email-draft"><div class="field"><label>To</label><input name="to" type="email" placeholder="Recipient email"></div><div class="field"><label>Subject</label><input name="subject" maxlength="140" placeholder="Subject"></div><div class="field"><label>Message</label><textarea name="body" placeholder="Write the draft"></textarea></div><button class="button primary" type="submit">Continue in Gmail</button><p class="small muted" style="margin:0">Confirm the From address in Gmail before sending.</p></form></section></div>
     <section class="card" style="margin-top:12px"><h3>Social post handoff</h3><p class="small muted">Prepare copy here, then open the social app. The post is not published by BKOP; attach selected media in the social app.</p><form class="form-stack" data-form="social"><div class="field"><label>Caption or post copy</label><textarea name="caption" maxlength="2000" placeholder="Draft social copy…">${esc(data.socialDraft)}</textarea></div><div class="platforms"><button class="button" type="submit" name="socialAction" value="copy">Copy caption</button><button class="button" type="submit" name="socialAction" value="facebook">Open Facebook</button><button class="button" type="submit" name="socialAction" value="instagram">Open Instagram</button></div></form></section>`}
   let firebaseStatus={state:'connecting',configured:false,user:null,message:'Connecting to the BKOP Firebase project…'};
   function updateFirebaseUI(status){
