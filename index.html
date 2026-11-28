@@ -115,6 +115,15 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .top-note{flex-basis:min(54vw,190px);width:min(54vw,190px);min-height:112px;max-height:none;aspect-ratio:auto;padding:8px}.top-note h3{margin:5px 0 4px}.top-note p{-webkit-line-clamp:2}.top-note-bottom{padding-top:5px}.top-note-meta{display:none}.top-notice-cards{padding-bottom:7px}
 .notice-layout .destination{display:none}.content-head{margin-top:12px}.content-head h2{font-size:20px}
 }
+@media(max-width:640px){
+.stage{grid-template-columns:84px minmax(0,1fr);grid-template-areas:"focus other" "spine spine";align-items:center;gap:10px}
+.hero-org,.hero-org.admin{width:84px;height:84px;min-height:0;aspect-ratio:1;border-radius:50%;padding:0;display:grid;place-items:center}
+.hero-org .hero-mark{border:0;width:auto;height:auto;font-size:24px}.hero-org .hero-name{display:none}
+.mobile-workspace-name{display:block;font-size:14px;font-weight:800;margin-bottom:7px}
+.switch-list{flex-wrap:nowrap}.switch-space{min-height:40px;flex:1 1 0}
+.top-note{flex:0 0 46%;width:46%;min-height:85px;max-height:none}.top-note p{-webkit-line-clamp:2}
+}
+@media(min-width:641px){.mobile-workspace-name{display:none}}
 </style>
 </head>
 <body>
@@ -401,7 +410,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     const orgOptions=Object.entries(ORGS).filter(([key])=>(firebaseOrgKeys===null||firebaseOrgKeys.includes(key))&&(adminActive||key!==data.org)).map(([key,label])=>`<button class="switch-space" type="button" data-org="${key}" aria-label="Switch to ${esc(label)}" aria-pressed="false"><span class="switch-mark">${ORG_MARKS[key]}</span><span class="switch-name">${esc(label)}</span></button>`).join('');
     const adminOption=adminActive?'':`<button class="switch-space admin" type="button" data-view="admin" aria-label="Open Admin Settings" aria-pressed="false"><span class="switch-mark">⚙</span><span class="switch-name">Admin Settings</span></button>`;
     $('#focusSpace').innerHTML=active;
-    $('#otherSpaces').innerHTML=`<div class="switch-title">${adminActive?'Organizations':'Switch space'}</div><div class="switch-list">${orgOptions}${adminOption}</div>`;
+    $('#otherSpaces').innerHTML=`<div class="switch-title">${adminActive?'Organizations':'Switch space'}</div><div class="mobile-workspace-name">${esc(adminActive?'Admin Settings':orgName())}</div><div class="switch-list">${orgOptions}${adminOption}</div>`;
   }
   function render(){
     renderWorkspaceNavigation();
