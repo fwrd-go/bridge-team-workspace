@@ -231,7 +231,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     return match?'COMMITTEE '+match[1]:'';
   }
   function pingAudienceOptions(selected){
-    const choices=[['none','No ping'],['everyone','Everyone · BK, OP & KZ'],['board','This board · '+orgName()],...COMMITTEE_SPACES.map((name,index)=>['committee'+(index+1),name+' · BK, OP & KZ'])];
+    const choices=[['none','No ping'],['everyone','Everyone'],['board',orgName()+' Board'],...COMMITTEE_SPACES.map((name,index)=>['committee'+(index+1),name])];
     return choices.map(([value,label])=>'<option value="'+esc(value)+'"'+(value===selected?' selected':'')+'>'+esc(label)+'</option>').join('');
   }
   function renderTopNotices(){
