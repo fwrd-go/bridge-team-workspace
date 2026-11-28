@@ -104,25 +104,36 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
 .top-notice-heading .notice-rows-hint{font-size:10px;color:#fff;font-weight:800}
 @media(max-width:640px){.top-notice-heading .notice-rows-hint{display:none}}
 .panel.notice-layout{width:100%;max-width:700px;margin-inline:auto;padding:0;border:0;background:transparent;box-shadow:none}.notice-layout .notice-compose-panel{width:100%;min-width:0;margin:0 auto}.notice-layout .notice-compose-panel > .item{margin:0}.notice-layout .destination{margin-bottom:12px}.notice-layout .form-stack{min-width:0}
+.mobile-label,.mobile-admin{display:none}
+@media(max-width:640px){
+.mobile-label,.mobile-admin{display:inline-block}.desktop-label{display:none}
+.topbar{align-items:center;padding:8px 0 12px}.demo-tools{flex-direction:row;align-items:center}.demo-tools .save-state,.demo-tools .danger{display:none}.demo-tools .mobile-admin{font-size:22px;min-width:44px;min-height:44px}
+.stage{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px;margin:12px auto;align-items:center}
+#focusSpace{justify-content:center}.hero-org{width:100%;max-width:150px;aspect-ratio:auto;min-height:92px;border:0;box-shadow:none;border-radius:12px;padding:8px;gap:5px}.hero-mark{width:42px;height:42px;border-radius:50%;font-size:14px}.hero-name{font-size:12px}.hero-caption,.switch-title,.spine-title,.switch-space.admin{display:none}
+.switch-list{display:flex;flex-wrap:wrap;gap:5px}.switch-space{flex:1 1 65px;min-height:44px;padding:6px;flex-direction:row;justify-content:center}.switch-mark{display:none}.switch-name{font-size:10px}
+.spine{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.module-link,.module-link[data-view=conversations],.module-link[data-view=tasks]{min-height:48px;padding:4px;gap:2px}.module-icon{width:24px;height:24px}.module-link span:last-child{font-size:11px}
+.top-note{flex-basis:min(54vw,190px);width:min(54vw,190px);min-height:112px;max-height:none;aspect-ratio:auto;padding:8px}.top-note h3{margin:5px 0 4px}.top-note p{-webkit-line-clamp:2}.top-note-bottom{padding-top:5px}.top-note-meta{display:none}.top-notice-cards{padding-bottom:7px}
+.notice-layout .destination{display:none}.content-head{margin-top:12px}.content-head h2{font-size:20px}
+}
 </style>
 </head>
 <body>
 <div class="shell">
   <header class="topbar">
     <div class="brand"><div class="brandmark">BKOP</div><div class="brandtext"><strong>BKOP</strong><span>Shared Workspace</span></div></div>
-    <div class="demo-tools"><span class="save-state" id="saveState">Demo ready</span><button class="button danger" type="button" data-action="reset">Reset demo</button></div>
+    <div class="demo-tools"><button class="button mobile-admin" type="button" data-view="admin" aria-label="Admin Settings">⚙</button><span class="save-state" id="saveState">Demo ready</span><button class="button danger" type="button" data-action="reset">Reset demo</button></div>
   </header>
   <section class="top-notice-board" id="topNotices" aria-live="polite" aria-label="Board notices"></section>
   <section class="stage" aria-label="BKOP workspace navigation">
     <div class="focus-space" id="focusSpace" aria-live="polite"></div>
     <nav class="spine" aria-label="Shared spaces">
       <h2 class="spine-title">Shared spaces</h2>
-      <button class="module-link" type="button" data-view="noticeboard"><span class="module-icon">▤</span><span>Post a notice</span></button>
-      <button class="module-link" type="button" data-view="conversations"><span class="module-icon">☷</span><span>Conversations</span></button>
+      <button class="module-link" type="button" data-view="noticeboard"><span class="module-icon">▤</span><span><span class="desktop-label">Post a notice</span><span class="mobile-label">Post</span></span></button>
+      <button class="module-link" type="button" data-view="conversations"><span class="module-icon">☷</span><span><span class="desktop-label">Conversations</span><span class="mobile-label">Chat</span></span></button>
       <button class="module-link" type="button" data-view="tasks"><span class="module-icon">✓</span><span>Tasks</span></button>
-      <button class="module-link" type="button" data-view="files"><span class="module-icon">▰</span><span>Shared Files</span></button>
+      <button class="module-link" type="button" data-view="files"><span class="module-icon">▰</span><span><span class="desktop-label">Shared Files</span><span class="mobile-label">Files</span></span></button>
       <button class="module-link" type="button" data-view="calendar"><span class="module-icon">▦</span><span>Calendar</span></button>
-      <button class="module-link" type="button" data-view="email"><span class="module-icon">✉</span><span>Email & drafts</span></button>
+      <button class="module-link" type="button" data-view="email"><span class="module-icon">✉</span><span><span class="desktop-label">Email & drafts</span><span class="mobile-label">Email</span></span></button>
     </nav>
     <aside class="other-spaces" id="otherSpaces" aria-label="Other workspaces"></aside>
   </section>
