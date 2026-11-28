@@ -1,14 +1,14 @@
 # Firebase workspace
 
-The Firebase project is `bridge-team-workspace`. This is the secure workspace page at `secure.html`; the existing public dashboard at `index.html` remains unchanged.
+The Firebase project is `bridge-team-workspace`. The BKOP dashboard at `index.html` and the authenticated chat page at `secure.html` share this project.
 
-## Planned behavior
+## Current app behavior
 
-- Google sign-in for invited members
-- Organization-specific membership for Bridge Kids, Our Place, and KIZAZI
-- In-dashboard organization chat backed by Cloud Firestore
-- Files buttons open each organization's Google Drive folder
-- Gmail opens the Google Workspace inbox link
+- Email/Password and Google sign-in are available in the BKOP dashboard.
+- Organization-specific membership is checked by email for Bridge Kids, Our Place, and KIZAZI.
+- Board chat uses the existing Firestore message path; notices, tasks, events, and committees 1–6 use added workspace paths.
+- Committee spaces 1–6 are shared across active members of the three organizations.
+- The dashboard saves locally before Firebase is configured. File contents remain on the device until Google Drive upload is connected.
 
 ## Current Firebase setup
 
@@ -16,7 +16,7 @@ The Firebase project is `bridge-team-workspace`. This is the secure workspace pa
 - Cloud Firestore Standard database created in production mode at `nam5`
 - Project remains on the no-cost Spark plan
 - Email/Password and Google sign-in are enabled; the Google support email is `fwrd.go@gmail.com`
-- Firestore is in production mode and the member-only rules are published
+- The deployed member-only rules currently protect membership and board chat; publish the updated repository rules to enable dashboard notices, tasks, events, and shared committees
 
 ## Finish setup
 
