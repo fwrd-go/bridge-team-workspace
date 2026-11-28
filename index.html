@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#050505">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="./bkop-icon.svg">
+<link rel="apple-touch-icon" href="./bkop-icon.svg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="BKOP">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>BKOP Shared Workspace · Interactive Demo</title>
 <style>
 :root{color-scheme:dark;--bg:#050505;--panel:#111;--panel2:#191919;--white:#f7f7f7;--muted:#b7b7b7;--line:#3a3a3a;--blue:#9ab7ff;--ok:#b9e4c3;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--white);min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--blue);outline-offset:2px}.shell{width:min(100% - 28px,1180px);margin:auto;padding:20px 0 40px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0 18px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px}.brandmark{width:42px;height:42px;border:2px solid var(--white);border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:12px;letter-spacing:.02em}.brandtext strong{display:block;font-size:21px;letter-spacing:-.04em}.brandtext span{display:block;color:var(--muted);font-size:12px;margin-top:2px}.demo-tools{display:flex;align-items:center;gap:10px}.save-state{font-size:12px;color:var(--ok)}.button{border:1px solid #777;background:transparent;color:var(--white);border-radius:9px;padding:9px 13px;font-weight:700}.button:hover{background:#222}.button.primary{background:var(--white);color:var(--bg);border-color:var(--white)}.button.danger{border-color:#9e5757;color:#ffbaba}.intro{padding:24px 0 14px;text-align:center}.intro h1{font-size:clamp(29px,5vw,42px);letter-spacing:-.055em;margin:0 0 7px}.intro p{color:var(--muted);margin:0;font-size:14px}.demo-ribbon{margin:16px auto 0;max-width:700px;padding:10px 14px;border:1px solid #555;border-radius:10px;color:#ddd;font-size:12px;text-align:center;background:#101010}.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(210px,260px) minmax(0,1fr);align-items:center;gap:24px;margin:24px auto 18px}.circle-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;justify-items:center}.org-circle{width:min(100%,190px);aspect-ratio:1;border-radius:50%;background:transparent;border:1px solid #aaa;color:var(--white);padding:14px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;transition:transform .18s,border-color .18s,background .18s,color .18s}.org-circle:hover{transform:scale(1.025);border-color:#fff}.org-circle[aria-pressed=true]{background:var(--white);color:var(--bg);border:5px double var(--bg);box-shadow:0 0 0 1px var(--white)}.org-circle.admin[aria-pressed=true]{background:#222;color:#fff;border:4px double #fff}.mark{width:38px;height:38px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:900}.org-name{font-size:clamp(12px,1.4vw,16px);line-height:1.15;font-weight:800}.spine{display:grid;gap:7px}.spine-title{font-size:11px;color:var(--muted);font-weight:850;letter-spacing:.18em;text-transform:uppercase;text-align:center;margin:0 0 8px}.module-link{position:relative;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:center;min-height:52px;padding:4px 10px;border:1px solid transparent;border-radius:12px;background:transparent;color:var(--white);text-align:left}.module-link:hover{background:#171717}.module-link[aria-current=page]{background:#f3f3f3;color:#050505}.module-icon{width:38px;height:38px;border:1px solid currentColor;border-radius:50%;display:grid;place-items:center;font-size:15px;font-weight:900}.module-link span:last-child{font-size:14px;font-weight:750}.content-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin:25px 0 12px}.content-head h2{margin:0;font-size:24px;letter-spacing:-.04em}.context-line{font-size:12px;color:var(--muted);margin-top:4px}.panel{border:1px solid var(--line);background:var(--panel);border-radius:16px;padding:18px;box-shadow:0 12px 32px #0006}.panel-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.72fr);gap:16px}.card{border:1px solid var(--line);background:var(--panel2);border-radius:12px;padding:15px;margin-bottom:12px}.card:last-child{margin-bottom:0}.card h3{font-size:16px;margin:0 0 10px}.muted{color:var(--muted)}.small{font-size:12px}.form-stack{display:grid;gap:10px}.form-row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field{display:grid;gap:5px}.field label,.label{font-size:12px;color:#ddd;font-weight:750}.field input,.field textarea,.field select,.inline-input{width:100%;background:#080808;border:1px solid #555;border-radius:8px;color:var(--white);padding:10px 11px}.field textarea{min-height:88px;resize:vertical}.field input::placeholder,.field textarea::placeholder,.inline-input::placeholder{color:#8f8f8f}.check-row{display:flex;align-items:center;gap:8px;color:#ddd;font-size:13px}.check-row input{accent-color:#fff;width:17px;height:17px}.item-list{display:grid;gap:10px}.item{border:1px solid #3c3c3c;background:#141414;border-radius:10px;padding:13px}.item-top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.item h3,.item strong{margin:0;font-size:15px}.item p{color:#ddd;line-height:1.45;margin:8px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.item-meta{display:flex;flex-wrap:wrap;gap:7px;margin-top:9px;color:var(--muted);font-size:11px}.tag{border:1px solid #626262;border-radius:999px;padding:3px 8px;color:#ddd;font-size:11px}.tag.pinned{border-color:#fff;color:#fff}.item-actions{display:flex;gap:6px;flex-wrap:wrap}.mini{padding:6px 9px;border:1px solid #686868;border-radius:7px;background:transparent;color:var(--white);font-size:11px;font-weight:700}.mini:hover{background:#292929}.mini.remove{color:#ffc3c3;border-color:#875252}.empty{border:1px dashed #555;border-radius:10px;padding:24px;text-align:center;color:var(--muted);font-size:13px}.select-row{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:14px}.select-row select{background:#080808;color:white;border:1px solid #555;border-radius:8px;padding:9px}.chat-list{display:grid;gap:9px;margin:14px 0}.message{padding:10px 12px;background:#1a1a1a;border-radius:10px;border-left:2px solid #888}.message header{display:flex;justify-content:space-between;gap:8px;font-size:11px;color:var(--muted)}.message p{margin:6px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.task-title{display:flex;gap:10px;align-items:flex-start}.task-title input{accent-color:white;width:18px;height:18px;margin-top:1px}.task.done h3{text-decoration:line-through;color:#aaa}.task details{margin-top:11px;border-top:1px solid #3d3d3d;padding-top:9px}.task summary{cursor:pointer;font-size:12px;color:#ddd}.comment{border-left:2px solid #666;padding:5px 9px;margin:8px 0;color:#ddd;font-size:12px}.file-picker{border:1px dashed #777;border-radius:10px;padding:18px;text-align:center}.file-picker input{max-width:100%;margin-top:10px}.file-name{overflow-wrap:anywhere}.week-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px}.week-tabs button[aria-pressed=true]{background:#fff;color:#050505}.alias-row{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid #3c3c3c}.alias-row:last-child{border:0}.checklist{display:grid;gap:9px}.checkline{display:flex;align-items:flex-start;gap:9px;color:#ddd;font-size:13px;line-height:1.4}.checkline input{accent-color:#fff;margin-top:2px}.footer-note{margin:17px 0 0;text-align:center;color:#999;font-size:11px}.hide{display:none!important}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:10;background:#f5f5f5;color:#050505;padding:10px 15px;border-radius:999px;font-size:13px;font-weight:750;box-shadow:0 6px 24px #0008;opacity:0;pointer-events:none;transition:opacity .2s}.toast.show{opacity:1}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.platforms{display:flex;gap:8px;flex-wrap:wrap}.sep{height:1px;background:#333;margin:12px 0}
@@ -53,6 +59,7 @@
 .top-notice-heading span{font-size:11px;color:var(--muted)}
 .top-notice-heading .notice-swipe-hint{display:none}
 .top-notice-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:820px;max-height:460px;overflow-y:auto;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:#aaa #222;padding:3px 5px 12px;margin:0 auto}
+.firebase-status{border-left:3px solid #aaa;background:#101010;padding:10px 12px;margin-top:10px;color:#eee;font-size:12px;line-height:1.45;overflow-wrap:anywhere}.firebase-status[data-state="connected"]{border-color:#8bd79d}.firebase-status[data-state="error"]{border-color:#ff9b9b}.firebase-auth{margin-top:12px}.firebase-config-area{min-height:155px;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace}
 .top-note{width:min(100%,230px);min-height:175px;aspect-ratio:.9;max-height:235px;justify-self:center;padding:12px;border:1px solid #fff;border-radius:5px;background:#f7f7f7;color:#111;display:flex;flex-direction:column;box-shadow:0 4px 10px #0007;overflow:hidden}
 .top-note.is-new{outline:2px solid #9ab7ff;outline-offset:2px}
 .top-note-meta{display:flex;justify-content:space-between;gap:5px;font-size:8px;line-height:1.15;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#4a4a4a}
@@ -120,7 +127,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
   </section>
   <div class="content-head"><div><h2 id="panelTitle">Noticeboard</h2><div class="context-line" id="contextLine">Bridge Kids International · Board</div></div><div class="toolbar"><span class="tag" id="viewTag">Demo data</span></div></div>
   <main class="panel" id="mainPanel" aria-live="polite"></main>
-  <p class="footer-note">Demo only: records and selected files stay on this device. Planned setup: Firebase Spark for app data, Google Drive for shared files.</p>
+  <p class="footer-note">Demo data saves in this browser. Firebase syncs workspace records after setup; files stay local until the shared Google Drive connection is added.</p>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
@@ -165,16 +172,34 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     files:[],events:[],aliases:KNOWN_ALIASES.slice(),inbox:'',members:[],socialDraft:'',socialMedia:[]
   };}
   function load(){try{const raw=localStorage.getItem(KEY);if(raw){const x=JSON.parse(raw);return Object.assign(starter(),x)}}catch(e){}return starter()}
-  let data=load();
-  data.aliases=[...new Set([...KNOWN_ALIASES,...(Array.isArray(data.aliases)?data.aliases:[])])];
-  data.socialMedia=Array.isArray(data.socialMedia)?data.socialMedia:[];
-  data.rooms=Object.assign({bki:'Board',ourplace:'Board',kizazi:'Board'},data.rooms||{});
-  data.committees=Object.assign({bki:[],ourplace:[],kizazi:[]},data.committees||{});
+  function normalizeState(candidate){
+    const base=Object.assign(starter(),candidate||{});
+    base.org=Object.prototype.hasOwnProperty.call(ORGS,base.org)?base.org:'bki';
+    const views=['noticeboard','conversations','tasks','files','calendar','email','admin'];
+    if(!views.includes(base.view))base.view='noticeboard';
+    ['notices','messages','tasks','files','events','members','aliases','socialMedia'].forEach(k=>{if(!Array.isArray(base[k]))base[k]=[]});
+    base.aliases=[...new Set([...KNOWN_ALIASES,...base.aliases])];
+    base.rooms=Object.assign({bki:'Board',ourplace:'Board',kizazi:'Board'},base.rooms||{});
+    base.committees=Object.assign({bki:[],ourplace:[],kizazi:[]},base.committees||{});
+    base.sharedRoom=COMMITTEE_SPACES.includes(base.sharedRoom)?base.sharedRoom:'';
+    return base;
+  }
+  let data=normalizeState(load());
+  const CLOUD_KEYS=['notices','messages','tasks','files','events','aliases','inbox','members','socialDraft','socialMedia','checklist','committees'];
+  function cloudPayload(){const out={};CLOUD_KEYS.forEach(k=>{out[k]=data[k]});return out}
+  function parseFirebaseConfig(raw){
+    const text=String(raw||''),start=text.indexOf('{'),end=text.lastIndexOf('}');
+    if(start<0||end<=start)throw new Error('Paste the Firebase web app config object.');
+    const jsonish=text.slice(start,end+1).replace(/([{,]\s*)([A-Za-z_$][\w$]*)\s*:/g,'$1"$2":').replace(/,\s*}/g,'}');
+    const cfg=JSON.parse(jsonish);
+    if(!cfg.apiKey||!cfg.authDomain||!cfg.projectId||!cfg.appId)throw new Error('The config needs apiKey, authDomain, projectId, and appId.');
+    return cfg;
+  }
   let recentlyPostedNoticeId=null;
   let lastNoticeAction='posted';
   let editingNoticeId=null;
   let editingNoticeDraft=null;
-  function save(){try{localStorage.setItem(KEY,JSON.stringify(data));$('#saveState').textContent='Saved on this device'}catch(e){$('#saveState').textContent='Session demo'}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(data));$('#saveState').textContent='Saved on this device';if(window.BKOPFirebase)window.BKOPFirebase.save(cloudPayload()).catch(()=>{})}catch(e){$('#saveState').textContent='Save unavailable'}}
   function orgName(){return data.org==='admin'?'All organizations':ORGS[data.org]||ORGS.bki}
   function room(){return data.sharedRoom&&COMMITTEE_SPACES.includes(data.sharedRoom)?data.sharedRoom:(data.rooms[data.org]||'Board')}
   function rooms(){return ['Board',...COMMITTEE_SPACES,...(data.committees[data.org]||[])]}
@@ -296,9 +321,31 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     <div class="two-col"><section class="card"><h3>Shared inbox & aliases</h3><form class="form-stack" data-form="inbox"><div class="field"><label>Main Gmail inbox</label><input name="inbox" type="email" value="${esc(data.inbox)}" placeholder="Enter the shared inbox address"></div><button class="button" type="submit">Save inbox for demo</button></form><div class="sep"></div><form class="form-row" data-form="alias"><div class="field"><label>Alias address</label><input name="alias" type="email" required placeholder="Add an existing alias"></div><button class="button" type="submit" style="align-self:end">Add alias</button></form><div style="margin-top:10px">${data.aliases.length?data.aliases.map((a,i)=>`<div class="alias-row"><span>${esc(a)}</span><button class="mini remove" data-action="delete-alias" data-index="${i}">Remove</button></div>`).join(''):'<p class="small muted">Add the actual aliases after confirming them with the client. Routing is not configured in this demo.</p>'}</div>${data.inbox?`<a class="button" href="https://mail.google.com/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-top:12px">Open Gmail inbox</a>`:''}</section>
     <section class="card"><h3>Draft a message</h3><form class="form-stack" data-form="email-draft"><div class="field"><label>To</label><input name="to" type="email" placeholder="Recipient email"></div><div class="field"><label>Subject</label><input name="subject" maxlength="140" placeholder="Subject"></div><div class="field"><label>Message</label><textarea name="body" placeholder="Write the draft"></textarea></div><button class="button primary" type="submit">Open draft in Gmail</button><p class="small muted" style="margin:0">Gmail opens with a draft for review; this demo never sends it.</p></form></section></div>
     <section class="card" style="margin-top:12px"><h3>Social post handoff</h3><p class="small muted">Prepare copy here, then open the social app. The post is not published by BKOP; attach selected media in the social app.</p><form class="form-stack" data-form="social"><div class="field"><label>Caption or post copy</label><textarea name="caption" maxlength="2000" placeholder="Draft social copy…">${esc(data.socialDraft)}</textarea></div><div class="platforms"><button class="button" type="submit" name="socialAction" value="copy">Copy caption</button><button class="button" type="submit" name="socialAction" value="facebook">Open Facebook</button><button class="button" type="submit" name="socialAction" value="instagram">Open Instagram</button></div></form></section>`}
-  function renderAdmin(){const checklist=[['firebase','Connect app data and chat to Firebase Spark'],['members','Set approved members and organization / committee roles'],['rules','Apply Firestore rules and confirm Drive folder access'],['drive','Connect the shared Google Drive folder'],['email','Confirm actual email aliases and routing'],['android','Review the finished flow on Android']];return `${panelHeader('Admin Settings','Try member and committee setup here. These demo roles do not change Firebase or Drive permissions.')}
-    <div class="panel-grid"><section class="card"><h3>Demo members</h3><form class="form-stack" data-form="member"><div class="field"><label>Name</label><input name="name" required maxlength="70" placeholder="Member name"></div><div class="field"><label>Email</label><input name="email" type="email" required placeholder="member@example.org"></div><div class="form-row"><div class="field"><label>Organization</label><select name="org">${Object.entries(ORGS).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join('')}</select></div><div class="field"><label>Role</label><select name="role"><option>Member</option><option>Committee lead</option><option>Board admin</option></select></div></div><button class="button primary" type="submit">Add demo member</button></form><div class="item-list" style="margin-top:12px">${data.members.length?data.members.map(m=>`<article class="item"><div class="item-top"><div><strong>${esc(m.name)}</strong><div class="item-meta"><span>${esc(m.email)}</span><span>${esc(ORGS[m.org]||'')}</span><span>${esc(m.role)}</span></div></div><button class="mini remove" data-action="delete-member" data-id="${m.id}">Remove</button></div></article>`).join(''):'<div class="empty">Add a demo member to try the layout.</div>'}</div></section>
-    <section class="card"><h3>To make BKOP live</h3><div class="checklist">${checklist.map(([k,label])=>`<label class="checkline"><input type="checkbox" data-action="checklist" data-key="${k}" ${data.checklist&&data.checklist[k]?'checked':''}><span>${label}</span></label>`).join('')}</div><p class="small muted">These are planning checks only. Toggling them does not configure Firebase or Drive.</p></section></div>`}
+  let firebaseStatus={state:'local',configured:false,user:null,message:'Local demo only · add your Firebase web app config to connect.'};
+  function updateFirebaseUI(status){
+    firebaseStatus=status||firebaseStatus;
+    const statusEl=$('#firebaseStatus'),authPanel=$('#firebaseAuthPanel');
+    if(statusEl){statusEl.textContent=firebaseStatus.message||'Firebase status unavailable';statusEl.dataset.state=firebaseStatus.state||'local'}
+    if(!authPanel)return;
+    if(!firebaseStatus.configured){authPanel.innerHTML='<p class="small muted">Save the config above first. No password is stored by this demo.</p>';return}
+    if(firebaseStatus.user){authPanel.innerHTML='<div class="card" style="margin:10px 0 0"><strong>Signed in as '+esc(firebaseStatus.user.email||'Firebase user')+'</strong><p class="small muted">Firebase UID for member approval</p><div class="toolbar"><code style="overflow-wrap:anywhere">'+esc(firebaseStatus.user.uid||'')+'</code><button class="mini" type="button" data-action="firebase-copy-uid">Copy UID</button></div><button class="button" type="button" data-action="firebase-signout" style="margin-top:10px">Sign out</button></div>';return}
+    authPanel.innerHTML='<form class="form-stack" data-form="firebase-signin"><div class="field"><label>Email</label><input name="email" type="email" autocomplete="username" required placeholder="Firebase account email"></div><div class="field"><label>Password</label><input name="password" type="password" autocomplete="current-password" required placeholder="Password"></div><div class="toolbar"><button class="button primary" type="submit">Sign in</button><button class="button" type="button" data-action="firebase-google">Sign in with Google</button></div></form><p class="small muted">Use an account enabled in Firebase Authentication. This sign-in form never saves your password.</p>';
+  }
+  window.addEventListener('bkop-firebase-status',e=>updateFirebaseUI(e.detail));
+  window.addEventListener('bkop-cloud-state',e=>{
+    const incoming=e.detail&&e.detail.state;if(!incoming)return;
+    data=normalizeState(Object.assign({},data,incoming));
+    try{localStorage.setItem(KEY,JSON.stringify(data))}catch(err){}
+    render();
+  });
+  function renderAdmin(){
+    const checklist=[['auth','Enable Email/Password or Google sign-in'],['firestore','Create the Firestore database on Spark'],['rules','Publish the included member-approved rules'],['domain','Authorize fwrd-go.github.io for sign-in'],['members','Approve Firebase UIDs for BKOP access'],['drive','Connect Drive for shared file contents']];
+    const configText=localStorage.getItem('bkop-firebase-config-text')||'';
+    return `${panelHeader('Admin Settings','Connect this demo to your Firebase project. Sign-in and Firestore data sync are separate from Google Drive files.')}
+    <div class="panel-grid"><section class="card"><h3>Firebase connection</h3><p class="small muted">Paste the config snippet from the registered Firebase web app. The web config is saved only in this browser; it is not a password or service-account key.</p><form class="form-stack" data-form="firebase-config"><div class="field"><label>Firebase web app config</label><textarea class="firebase-config-area" name="config" spellcheck="false" placeholder='const firebaseConfig = { apiKey: "…", authDomain: "…", projectId: "…", appId: "…" };'>${esc(configText)}</textarea></div><button class="button primary" type="submit">Save config & connect</button></form><div id="firebaseStatus" class="firebase-status" data-state="local">Local demo only · add your Firebase web app config to connect.</div><div id="firebaseAuthPanel" class="firebase-auth"></div><p class="small muted">Cloud records include notices, messages, tasks, events, aliases, and member list. File contents remain on this device until Drive is connected.</p></section>
+    <section class="card"><h3>Demo members</h3><form class="form-stack" data-form="member"><div class="field"><label>Name</label><input name="name" required maxlength="70" placeholder="Member name"></div><div class="field"><label>Email</label><input name="email" type="email" required placeholder="member@example.org"></div><div class="form-row"><div class="field"><label>Organization</label><select name="org">${Object.entries(ORGS).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join('')}</select></div><div class="field"><label>Role</label><select name="role"><option>Member</option><option>Committee lead</option><option>Board admin</option></select></div></div><button class="button primary" type="submit">Add demo member</button></form><div class="item-list" style="margin-top:12px">${data.members.length?data.members.map(m=>`<article class="item"><div class="item-top"><div><strong>${esc(m.name)}</strong><div class="item-meta"><span>${esc(m.email)}</span><span>${esc(ORGS[m.org]||'')}</span><span>${esc(m.role)}</span></div></div><button class="mini remove" data-action="delete-member" data-id="${m.id}">Remove</button></div></article>`).join(''):'<div class="empty">Add a demo member to try the layout.</div>'}</div></section>
+    <section class="card"><h3>Firebase setup checklist</h3><div class="checklist">${checklist.map(([k,label])=>`<label class="checkline"><input type="checkbox" data-action="checklist" data-key="${k}" ${data.checklist&&data.checklist[k]?'checked':''}><span>${label}</span></label>`).join('')}</div><p class="small muted">Checklist marks are local reminders; they do not change Firebase settings.</p><a class="button" href="https://console.firebase.google.com/" target="_blank" rel="noopener" style="display:inline-block;text-decoration:none;margin-top:8px">Open Firebase console</a></section></div>`;
+  }
   function renderWorkspaceNavigation(){
     const adminActive=data.view==='admin';
     const active=adminActive
@@ -321,6 +368,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     const renderers={noticeboard:renderNotices,conversations:renderConversations,tasks:renderTasks,files:renderFiles,calendar:renderCalendar,email:renderEmail,admin:renderAdmin};
     $('#mainPanel').innerHTML=(renderers[data.view]||renderNotices)();
     if(data.view==='email')enhanceEmailView();
+    if(data.view==='admin')updateFirebaseUI(firebaseStatus);
     $('#saveState').textContent='Saved on this device';
   }
   function toast(message){const t=$('#toast');t.textContent=message;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1900)}
@@ -347,6 +395,9 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     if(a==='delete-social-file'){if(SOCIAL_URLS[which])URL.revokeObjectURL(SOCIAL_URLS[which]);delete SOCIAL_URLS[which];delete SOCIAL_FILES[which];data.socialMedia=data.socialMedia.filter(m=>m.id!==which);save();const list=$('#socialAttachmentList');if(list)list.innerHTML=socialAttachmentMarkup();toast('Attachment removed');return}
     if(a==='delete-member'){data.members=data.members.filter(x=>x.id!==which);commit();return}
     if(a==='calendar-filter'){calendarFilter=b.dataset.value||'all';render();return}
+    if(a==='firebase-google'){if(!window.BKOPFirebase){toast('Firebase module is still loading');return}try{await window.BKOPFirebase.signInGoogle()}catch(err){toast(err.message||'Google sign-in failed')}return}
+    if(a==='firebase-signout'){try{await window.BKOPFirebase?.signOut()}catch(err){toast(err.message||'Sign out failed')}return}
+    if(a==='firebase-copy-uid'){try{await navigator.clipboard.writeText(firebaseStatus.user?.uid||'');toast('Firebase UID copied')}catch(err){toast('Select and copy the UID shown above')}return}
   });
   document.addEventListener('change',e=>{
     const t=e.target;
@@ -362,6 +413,13 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
   });
   document.addEventListener('submit',async e=>{
     const form=e.target.closest('form[data-form]');if(!form)return;e.preventDefault();const f=new FormData(form),kind=form.dataset.form;
+    if(kind==='firebase-config'){
+      const raw=String(f.get('config')||'').trim();
+      try{const cfg=parseFirebaseConfig(raw);localStorage.setItem('bkop-firebase-config-text',raw);localStorage.setItem('bkop-firebase-config-v1',JSON.stringify(cfg));if(!window.BKOPFirebase)throw new Error('Firebase module is still loading; try again in a moment.');await window.BKOPFirebase.connect(cfg);toast('Firebase config saved in this browser')}catch(err){toast(err.message||'Firebase config could not be read')}return;
+    }
+    if(kind==='firebase-signin'){
+      try{await window.BKOPFirebase.signInEmail(String(f.get('email')||'').trim(),String(f.get('password')||''));toast('Signed in; connecting workspace data')}catch(err){toast(err.message||'Sign-in failed')}return;
+    }
     if(kind==='notice-edit'){
       const isDraft=!!(editingNoticeDraft&&editingNoticeDraft.id===form.dataset.id);const n=data.notices.find(x=>x.id===form.dataset.id)||(isDraft?editingNoticeDraft:null);if(!n)return;
       const rawLink=String(f.get('link')||'').trim(),link=safeHref(rawLink);
@@ -404,7 +462,9 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     if(kind==='member'){data.members.push({id:id(),name:f.get('name').trim(),email:f.get('email').trim(),org:f.get('org'),role:f.get('role')});commit();toast('Demo member added');return}
   });
   render();
+  if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('./sw.js').catch(()=>{});
 }());
 </script>
+<script type="module" src="./firebase-sync.js"></script>
 </body>
 </html>
