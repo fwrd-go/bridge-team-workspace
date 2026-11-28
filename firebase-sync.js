@@ -242,7 +242,7 @@ async function connect(config) {
       await f.getRedirectResult(auth).catch(error => emitStatus('error', explain(error)));
     }
     localStorage.setItem(CONFIG_KEY, JSON.stringify(config));
-    emitStatus(user ? 'connecting' : 'signed-out', user ? 'Firebase is ready; opening your shared workspaces…' : 'Firebase is configured. Sign in to start live workspace sync.');
+    // Authentication observer owns the signed-in and signed-out status.
   } catch (error) {
     emitStatus('error', explain(error));
     throw error;
@@ -294,7 +294,8 @@ async function signInGoogle() {
   if (!auth) throw new Error('Save the Firebase web app config first.');
   const provider = new sdk.GoogleAuthProvider();
   provider.setCustomParameters({ prompt: 'select_account' });
-  await sdk.signInWithRedirect(auth, provider);
+  const result = await sdk.signInWithPopup(auth, provider);
+  return result.user;
 }
 
 async function signOut() {
