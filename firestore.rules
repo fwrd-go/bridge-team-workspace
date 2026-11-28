@@ -1,36 +1,27 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    function signedIn() { return request.auth != null && request.auth.token.email != null; }
-    function emailKey() { return request.auth.token.email.lower(); }
-    function member(orgId) {
-      return signedIn() && exists(/databases/$(database)/documents/orgs/$(orgId)/members/$(emailKey()));
-    }
-    function admin(orgId) {
-      return member(orgId) &&
-        get(/databases/$(database)/documents/orgs/$(orgId)/members/$(emailKey())).data.role == 'admin';
+    function signedIn() {
+      return request.auth != null;
     }
 
-    match /orgs/{orgId}/members/{email} {
-      allow get: if signedIn() && (email == emailKey() || admin(orgId));
-      allow list: if admin(orgId);
-      allow create, update: if admin(orgId)
-        && request.resource.data.email == email
-        && request.resource.data.role in ['admin', 'member'];
-      allow delete: if admin(orgId) && email != emailKey();
+    function approvedMember() {
+      return signedIn()
+        && exists(/databases/$(database)/documents/workspaces/bkop/members/$(request.auth.uid))
+        && get(/databases/$(database)/documents/workspaces/bkop/members/$(request.auth.uid)).data.status == 'active';
     }
 
-    match /orgs/{orgId}/rooms/{roomId}/messages/{messageId} {
-      allow read: if member(orgId);
-      allow create: if member(orgId)
-        && request.resource.data.uid == request.auth.uid
-        && request.resource.data.email == request.auth.token.email
-        && request.resource.data.text is string
-        && request.resource.data.text.size() > 0
-        && request.resource.data.text.size() <= 2000;
-      allow update, delete: if admin(orgId);
+    match /workspaces/bkop/members/{uid} {
+      allow read: if signedIn() && (request.auth.uid == uid || approvedMember());
+      allow write: if false;
     }
 
-    match /{document=**} { allow read, write: if false; }
+    match /workspaces/bkop/data/{document} {
+      allow read, write: if approvedMember();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
   }
 }
