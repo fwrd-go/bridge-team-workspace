@@ -148,7 +148,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
       <button class="module-link" type="button" data-view="tasks"><span class="module-icon">✓</span><span>Tasks</span></button>
       <button class="module-link" type="button" data-view="files"><span class="module-icon">▰</span><span><span class="desktop-label">Shared Files</span><span class="mobile-label">Files</span></span></button>
       <button class="module-link" type="button" data-view="calendar"><span class="module-icon">▦</span><span>Calendar</span></button>
-      <button class="module-link" type="button" data-view="email"><span class="module-icon">✉</span><span><span class="desktop-label">Email & drafts</span><span class="mobile-label">Email</span></span></button>
+      <button class="module-link" type="button" data-view="email"><span class="module-icon">✉</span><span><span class="desktop-label">Email</span><span class="mobile-label">Email</span></span></button>
     </nav>
     <aside class="other-spaces" id="otherSpaces" aria-label="Other workspaces"></aside>
   </section>
@@ -410,7 +410,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     $('#topNotices').innerHTML=renderTopNotices();
     document.querySelectorAll('[data-org]').forEach(b=>{const active=b.dataset.org===data.org&&data.view!=='admin';b.setAttribute('aria-pressed',String(active));});
     document.querySelectorAll('[data-view]').forEach(b=>{b.setAttribute('aria-current',String(b.dataset.view===data.view?'page':'false'));if(b.dataset.view==='admin')b.setAttribute('aria-pressed',String(data.view==='admin'));});
-    const titleMap={noticeboard:'Post a notice',conversations:'Conversations',tasks:'Tasks',files:'Shared Files',calendar:'Calendar',email:'Email & drafts',admin:'Settings'};
+    const titleMap={noticeboard:'Post a notice',conversations:'Conversations',tasks:'Tasks',files:'Shared Files',calendar:'Calendar',email:'Email',admin:'Settings'};
     $('#panelTitle').textContent=titleMap[data.view]||'Noticeboard';
     $('#contextLine').textContent=data.view==='admin'?'':data.view==='conversations'||data.view==='tasks'?(room()==='Board'?'Bridge Kids International Board':room()):orgName();
     $('#viewTag').textContent=data.view==='admin'?'':'Demo data';$('#viewTag').hidden=data.view==='admin';
