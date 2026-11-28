@@ -148,7 +148,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
       <button class="module-link" type="button" data-view="tasks"><span class="module-icon">✓</span><span>Tasks</span></button>
       <button class="module-link" type="button" data-view="files"><span class="module-icon">▰</span><span><span class="desktop-label">Shared Files</span><span class="mobile-label">Files</span></span></button>
       <button class="module-link" type="button" data-view="calendar"><span class="module-icon">▦</span><span>Calendar</span></button>
-      <button class="module-link" type="button" data-view="email"><span class="module-icon">✉</span><span><span class="desktop-label">Email</span><span class="mobile-label">Email</span></span></button>
+      <button class="module-link" type="button" data-view="email"><span class="module-icon">✉</span><span><span class="desktop-label">Email &amp; Media</span><span class="mobile-label">Email &amp; Media</span></span></button>
     </nav>
     <aside class="other-spaces" id="otherSpaces" aria-label="Other workspaces"></aside>
   </section>
@@ -329,7 +329,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
       if(platforms)platforms.insertAdjacentHTML('afterbegin','<button class="button primary" type="submit" name="socialAction" value="share">Share caption + media</button>');
     }
   }
-  function renderEmail(){return `${panelHeader('Email','')}
+  function renderEmail(){return `${panelHeader('Email & Media','')}
     <div class="two-col"><section class="card"><h3>CONNECT</h3><a class="button primary" href="https://mail.google.com/" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Open CONNECT inbox</a></section>
     <section class="card"><h3>Draft a message</h3><form class="form-stack" data-form="email-draft"><div class="field"><label>To</label><input name="to" type="email" placeholder="Recipient email"></div><div class="field"><label>Subject</label><input name="subject" maxlength="140" placeholder="Subject"></div><div class="field"><label>Message</label><textarea name="body" placeholder="Write the draft"></textarea></div><button class="button primary" type="submit">Continue in Gmail</button><p class="small muted" style="margin:0">Confirm the From address in Gmail before sending.</p></form></section></div>
     <section class="card" style="margin-top:12px"><h3>Social post handoff</h3><p class="small muted">Prepare copy here, then open the social app. The post is not published by BKOP; attach selected media in the social app.</p><form class="form-stack" data-form="social"><div class="field"><label>Caption or post copy</label><textarea name="caption" maxlength="2000" placeholder="Draft social copy…">${esc(data.socialDraft)}</textarea></div><div class="platforms"><button class="button" type="submit" name="socialAction" value="copy">Copy caption</button><button class="button" type="submit" name="socialAction" value="facebook">Open Facebook</button><button class="button" type="submit" name="socialAction" value="instagram">Open Instagram</button></div></form></section>`}
@@ -410,7 +410,7 @@ button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-vis
     $('#topNotices').innerHTML=renderTopNotices();
     document.querySelectorAll('[data-org]').forEach(b=>{const active=b.dataset.org===data.org&&data.view!=='admin';b.setAttribute('aria-pressed',String(active));});
     document.querySelectorAll('[data-view]').forEach(b=>{b.setAttribute('aria-current',String(b.dataset.view===data.view?'page':'false'));if(b.dataset.view==='admin')b.setAttribute('aria-pressed',String(data.view==='admin'));});
-    const titleMap={noticeboard:'Post a notice',conversations:'Conversations',tasks:'Tasks',files:'Shared Files',calendar:'Calendar',email:'Email',admin:'Settings'};
+    const titleMap={noticeboard:'Post a notice',conversations:'Conversations',tasks:'Tasks',files:'Shared Files',calendar:'Calendar',email:'Email & Media',admin:'Settings'};
     $('#panelTitle').textContent=titleMap[data.view]||'Noticeboard';
     $('#contextLine').textContent=data.view==='admin'?'':data.view==='conversations'||data.view==='tasks'?(room()==='Board'?'Bridge Kids International Board':room()):orgName();
     $('#viewTag').textContent=data.view==='admin'?'':'Demo data';$('#viewTag').hidden=data.view==='admin';
